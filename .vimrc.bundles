@@ -1,0 +1,10 @@
+Bundle 'gmarik/vundle'
+
+Bundle 'godlygeek/tabular'
+Bundle 'plasticboy/vim-markdown'
+Bundle 'airblade/vim-gitgutter'
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-rails'
+Bundle 'vim-ruby/vim-ruby'
