@@ -18,6 +18,7 @@ filetype plugin indent on
 filetype on
 
 colorscheme solarized
+set background=dark
 highlight clear SignColumn
 
 let g:airline#extensions#tabline#enabled = 1
@@ -40,11 +41,24 @@ set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc,*.pyc
 set hidden
 set laststatus=2
 
-" Opal-specific styles
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
-" set expandtab
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
+set expandtab
+
+function! ToggleOpal()
+  if (&tabstop == 2)
+		set shiftwidth=4
+    set tabstop=4
+    set softtabstop=4
+    set noexpandtab
+  else
+    set shiftwidth=2
+    set tabstop=2
+    set softtabstop=2
+    set noexpandtab
+  endif
+endfunction
 
 set mouse=a
 
