@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Todo:
+# - Let me specify username/server
+
+USERNAME="alex"
+SERVER="mainframe.city"
+CREDS="$USERNAME@$SERVER"
+REMOTE_PATH="repos"
+
+if [ $# -lt 1 ]
+then
+  echo "Please specify a name for remote repo."
+  exit
+else
+  REPO_NAME=$1
+fi
+
+FULL_PATH="$CREDS:$REMOTE_PATH/$REPO_NAME.git"
+
+echo "Creating remote repo at: $FULL_PATH"
+
+ssh $CREDS bash -c "'~/bin/create_br $REPO_NAME'"
+exit
