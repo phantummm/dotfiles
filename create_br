@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# To-do:
+# - Regex validation of repo/directory name
+# - Use actual username for clone link
+
+if [ $# -gt 0 ]
+then
+  REPO_NAME=$1
+else
+  echo "You must provide a name for the repo."
+  exit
+fi
+
+REPO_DIR="~/repos/$REPO_NAME.git"
+
+if [ -d "$REPO_DIR" ]
+then
+  echo "There's already a repo at $REPO_DIR"
+  exit
+else
+  git init --bare ~/repos/$REPO_NAME.git
+fi
+
+CLONE_PATH="alex@mainframe.city:repos/$REPO_NAME.git"
+echo "Clone link: $CLONE_PATH"
+
+exit
