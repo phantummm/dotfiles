@@ -17,7 +17,7 @@ call vundle#end()
 filetype plugin indent on
 filetype on
 
-colorscheme solarized
+colorscheme sourcerer
 set background=dark
 highlight clear SignColumn
 
@@ -47,16 +47,16 @@ set tabstop=2
 set expandtab
 
 function! ToggleOpal()
-  if (&tabstop == 2)
+  if (&shiftwidth == 2)
 		set shiftwidth=4
-    set tabstop=4
-    set softtabstop=4
+    set tabstop=2
+    set softtabstop=2
     set noexpandtab
   else
     set shiftwidth=2
     set tabstop=2
     set softtabstop=2
-    set noexpandtab
+    set expandtab
   endif
 endfunction
 
@@ -69,8 +69,6 @@ noremap <C-h> <C-w>h
 noremap <C-j> <C-w>j
 noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
-noremap <C-S-l> :vsplit<CR>
-noremap <C-S-j> :split<CR>
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 nnoremap <C-w> :bd<CR>
