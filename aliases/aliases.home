@@ -1,0 +1,3 @@
+alias cd-src="cd ~/src"
+alias cd-dot="cd ~/src/dot-files"
+alias cd-p="cd ~/p"
