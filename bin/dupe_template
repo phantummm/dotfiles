@@ -1,0 +1,49 @@
+#!/usr/bin/env ruby
+
+# Simple script for spawning boilerplate templates, and removing repo
+# ~phantummm 10/2015
+
+require 'fileutils'
+
+if ARGV.empty?
+  puts "Please provide a name for the destination project."
+  exit
+end
+
+NAME = ARGV.first.to_s
+PATH = File.join(Dir.home, "p", NAME)
+
+TEMPLATE = Dir.new(Dir.pwd)
+TEMPLATE_NAME = TEMPLATE.path.split('/').last
+
+if Dir.exists? PATH
+  puts "There's already someone living at #{ PATH }"
+  exit
+end
+
+puts "Copying template '#{ TEMPLATE_NAME }' to #{ PATH }."
+FileUtils.copy_entry(TEMPLATE.path, PATH)
+
+PROJECT = Dir.new(PATH) rescue nil
+if PROJECT.nil?
+  puts "Cannot create project at #{ PATH }."
+  exit
+end
+
+REPO = Dir.new(File.join(PATH, '.git')) rescue nil
+unless REPO.nil?
+  puts "Git repo found at #{ REPO.path }."
+
+  response = nil
+  until %w{y n yes no}.include?(response) do
+    print "Delete? [y/n]: "
+    response = STDIN.gets.chomp.downcase
+  end
+
+  puts "Fine, ok." && exit unless response.start_with? 'y'
+
+  puts "Alright, deleting."
+  FileUtils.remove_entry(REPO.path)
+end
+
+exit
