@@ -53,6 +53,9 @@ set softtabstop=2
 set tabstop=2
 set expandtab
 
+" Project-specific stuff
+autocmd BufNewFile,BufRead ~/Sites/opal/* setlocal shiftwidth=4 noexpandtab
+
 function! ToggleOpal()
   if (&shiftwidth == 2)
     set shiftwidth=4
