@@ -14,8 +14,10 @@ endif
 
 call vundle#end()
 
+" Indentation
+set autoindent
+set listchars=tab:▸\ ,eol:¬
 filetype plugin indent on
-filetype on
 
 " Color/theme stuff
 colorscheme sourcerer
@@ -32,7 +34,7 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme="ubaryd"
 
-set autoindent
+" Miscellany
 set autoread
 set directory-=.
 set encoding=utf-8
@@ -53,13 +55,9 @@ set expandtab
 function! ToggleOpal()
   if (&shiftwidth == 2)
     set shiftwidth=4
-    set tabstop=2
-    set softtabstop=4
     set noexpandtab
   else
     set shiftwidth=2
-    set tabstop=2
-    set softtabstop=2
     set expandtab
   endif
 endfunction
