@@ -28,8 +28,6 @@ let g:airline#extensions#tabline#right_alt_sep = '|'
 
 set autoindent
 set autoread
-set backspace=2
-set clipboard=unnamed
 set directory-=.
 set encoding=utf-8
 set incsearch
@@ -48,9 +46,9 @@ set expandtab
 
 function! ToggleOpal()
   if (&shiftwidth == 2)
-		set shiftwidth=4
+    set shiftwidth=4
     set tabstop=2
-    set softtabstop=2
+    set softtabstop=4
     set noexpandtab
   else
     set shiftwidth=2
