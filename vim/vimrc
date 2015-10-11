@@ -2,14 +2,14 @@ set nocompatible
 syntax enable
 
 " Vundler stuff
-" To update, source ~/.vimrc.bundles and then :PluginInstall
+" To update, source ~/.Vundlefile and then :PluginInstall
 filetype on
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
+if filereadable(expand("~/.Vundlefile"))
+  source ~/.Vundlefile
 endif
 
 call vundle#end()
@@ -75,7 +75,7 @@ nnoremap <C-w> :bd<CR>
 nnoremap <C-W> :bd!<CR>
 
 nnoremap <leader>p :e ~/.vimrc<CR>
-nnoremap <leader>P :e ~/.vimrc.bundles<CR>
+nnoremap <leader>P :e ~/.Vundlefile<CR>
 nnoremap <leader>S :source ~/.vimrc<CR>
 
 nnoremap <leader>d :NERDTreeToggle<CR>
