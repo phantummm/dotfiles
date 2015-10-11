@@ -8,8 +8,8 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-if filereadable(expand("~/.Vundlefile"))
-  source ~/.Vundlefile
+if filereadable(expand("~/.vim/Vundlefile"))
+  source ~/.vim/Vundlefile
 endif
 
 call vundle#end()
