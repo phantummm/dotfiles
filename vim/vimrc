@@ -47,6 +47,7 @@ set smartcase
 set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc,*.pyc
 set hidden
 set laststatus=2
+set mouse=a
 
 set shiftwidth=2
 set softtabstop=2
@@ -54,19 +55,9 @@ set tabstop=2
 set expandtab
 
 " Project-specific stuff
-autocmd BufNewFile,BufRead ~/Sites/opal/* setlocal shiftwidth=4 noexpandtab
-
-function! ToggleOpal()
-  if (&shiftwidth == 2)
-    set shiftwidth=4
-    set noexpandtab
-  else
-    set shiftwidth=2
-    set expandtab
-  endif
-endfunction
-
-set mouse=a
+if has("autocmd")
+  autocmd BufNewFile,BufRead ~/Sites/opal/* setlocal shiftwidth=4 noexpandtab
+endif
 
 " keyboard shortcuts
 let mapleader = ','
