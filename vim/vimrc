@@ -21,10 +21,9 @@ colorscheme sourcerer
 set background=dark
 highlight clear SignColumn
 
+let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#right_sep = ' '
-let g:airline#extensions#tabline#right_alt_sep = '|'
+let g:airline_theme="ubaryd"
 
 set autoindent
 set autoread
