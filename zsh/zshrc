@@ -15,7 +15,13 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 source $(brew --prefix nvm)/nvm.sh
 
 # load alias files from ~/.aliases
-for f in ~/.aliases/aliases.*
+for f in ~/.aliases/*.aliases
+do
+  source $f
+done
+
+# apply local alias files to override files from SCM
+for f in ~/.aliases/*.aliases.local
 do
   source $f
 done

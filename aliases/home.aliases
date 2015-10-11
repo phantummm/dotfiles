@@ -5,3 +5,6 @@ alias cd-p="cd ~/p"
 alias ll="ls -lahL"
 
 alias megapush="git push origin master;git push mainframe master"
+
+alias sz="source ~/.zshrc"
+alias vz="vim ~/.zshrc"
