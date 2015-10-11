@@ -17,10 +17,17 @@ call vundle#end()
 filetype plugin indent on
 filetype on
 
+" Color/theme stuff
 colorscheme sourcerer
 set background=dark
 highlight clear SignColumn
 
+" Adjustments for NERDTree to sort of match ubaryd airline theme
+hi NERDTreeDir ctermfg=137
+hi NERDTreeUp ctermfg=137
+hi NERDTreeCWD ctermfg=245
+
+" Airline setup
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme="ubaryd"
