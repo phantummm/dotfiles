@@ -19,12 +19,11 @@ set autoindent
 set listchars=tab:▸\ ,eol:¬
 filetype plugin indent on
 
-" Color/theme stuff
+" Color/theme stuff, including monkey-patched colors
 colorscheme sourcerer
 set background=dark
 highlight clear SignColumn
 
-" Adjustments for NERDTree to sort of match ubaryd airline theme
 hi NERDTreeDir ctermfg=137
 hi NERDTreeUp ctermfg=137
 hi NERDTreeCWD ctermfg=245
@@ -56,7 +55,7 @@ set expandtab
 
 " Project-specific stuff
 if has("autocmd")
-  autocmd BufNewFile,BufRead ~/Sites/opal/* setlocal shiftwidth=4 noexpandtab
+  autocmd BufNewFile,BufRead ~/Sites/opal/* setlocal noexpandtab
 endif
 
 " keyboard shortcuts
