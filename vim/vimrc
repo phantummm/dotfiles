@@ -46,6 +46,8 @@ set smartcase
 set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc,*.pyc
 set hidden
 set laststatus=2
+
+set clipboard=unnamed
 set mouse=a
 
 set shiftwidth=2
@@ -71,7 +73,7 @@ nnoremap <C-w> :bd<CR>
 nnoremap <C-W> :bd!<CR>
 
 nnoremap <leader>p :e ~/.vimrc<CR>
-nnoremap <leader>P :e ~/.Vundlefile<CR>
+nnoremap <leader>P :e ~/.vim/Vundlefile<CR>
 nnoremap <leader>S :source ~/.vimrc<CR>
 
 nnoremap <leader>d :NERDTreeToggle<CR>
