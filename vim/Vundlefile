@@ -12,6 +12,8 @@ Bundle 'rust-lang/rust.vim'
 
 Bundle 'xero/sourcerer.vim'
 
+Bundle 'tpope/vim-endwise'
+Bundle 'jiangmiao/auto-pairs'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'bling/vim-airline'
