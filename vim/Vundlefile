@@ -8,6 +8,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'rust-lang/rust.vim'
 
 Bundle 'xero/sourcerer.vim'
 
