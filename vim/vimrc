@@ -71,6 +71,7 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
+nnoremap <C-b> :bd<CR>
 
 nnoremap <leader>p :e ~/.vimrc<CR>
 nnoremap <leader>P :e ~/.vim/Vundlefile<CR>

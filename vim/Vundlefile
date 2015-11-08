@@ -12,13 +12,16 @@ Bundle 'rust-lang/rust.vim'
 
 Bundle 'chriskempson/base16-vim'
 
+Bundle 'rking/ag.vim'
+
 Bundle 'tpope/vim-endwise'
 Bundle 'jiangmiao/auto-pairs'
+
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'bling/vim-airline'
 Bundle 'godlygeek/tabular'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
-Bundle 'rking/ag.vim'
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'vim-scripts/BufOnly.vim'
