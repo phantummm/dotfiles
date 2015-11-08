@@ -20,7 +20,8 @@ set listchars=tab:▸\ ,eol:¬
 filetype plugin indent on
 
 " Color/theme stuff, including monkey-patched colors
-colorscheme sourcerer
+let base16colorspace=256
+colorscheme base16-railscasts
 set background=dark
 highlight clear SignColumn
 
@@ -32,7 +33,7 @@ hi NERDTreeCWD ctermfg=245
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ":t"
-let g:airline_theme="ubaryd"
+let g:airline_theme="base16"
 
 " Miscellany
 set autoread
