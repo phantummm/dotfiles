@@ -74,9 +74,12 @@ set tabstop=2
 set backspace=2
 set expandtab
 
-" Project-specific stuff
+" Project/filetype-specific stuff
 if has("autocmd")
-  autocmd BufNewFile,BufRead ~/Sites/opal/* setlocal noexpandtab
+  augroup opal
+    autocmd BufNewFile,BufRead ~/Sites/opal/* setlocal noexpandtab
+    autocmd BufNewFile,BufRead ~/Sites/opal/* let b:vimrubocop_config='~/Sites/opal/.rubocop.yml'
+  augroup END
 endif
 
 " keyboard shortcuts
