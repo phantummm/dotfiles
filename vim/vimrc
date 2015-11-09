@@ -29,6 +29,23 @@ hi NERDTreeDir ctermfg=137
 hi NERDTreeUp ctermfg=137
 hi NERDTreeCWD ctermfg=245
 
+" iTerm stuff
+let &titlestring = expand("%:t")
+if &term == "screen" || &term == "xterm-256color"
+	set t_ts=]1;
+	set t_fs=
+endif
+if &term == "screen" || &term == "xterm" || &term == "xterm-256color"
+  set title
+endif
+
+if has("autocmd")
+  augroup iterm
+    autocmd BufEnter * let &titlestring = expand("%:t")
+    autocmd BufEnter * set title
+  augroup END
+end
+
 " Airline setup
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
