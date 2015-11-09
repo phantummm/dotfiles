@@ -7,7 +7,7 @@ alias ll="ls -lahL"
 alias megapush="git push origin master;git push mainframe master"
 
 alias resetdots="git -C ~/src/dot-files reset --hard HEAD"
-alias savedots="git -C ~/src/dot-files add -A;git -C ~/src/dot-files commit -m 'Saving dots.';git -C ~/src/dot-files push mainframe master"
+alias savedots="git -C ~/src/dot-files add -A;git -C ~/src/dot-files commit -m 'Saving dots.';git -C ~/src/dot-files push mainframe master;git -C ~/src/dot-files push origin master"
 
 alias sz="source ~/.zshrc"
 alias vz="vim ~/.zshrc"
