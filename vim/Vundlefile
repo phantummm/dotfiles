@@ -4,10 +4,13 @@ Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
 Bundle 'ngmy/vim-rubocop'
+Bundle 'thoughtbot/vim-rspec'
+
 Bundle 'elzr/vim-json'
 Bundle 'pangloss/vim-javascript'
 Bundle 'wookiehangover/jshint.vim'
 Bundle 'kchmck/vim-coffee-script'
+
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'plasticboy/vim-markdown'
 Bundle 'rust-lang/rust.vim'

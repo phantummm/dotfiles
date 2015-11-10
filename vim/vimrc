@@ -1,3 +1,6 @@
+
+" Testing
+let g:rspec_command = "!bundle exec rspec {spec}"
 set nocompatible
 syntax enable
 
@@ -14,6 +17,13 @@ endif
 
 call vundle#end()
 
+" Misc filetype hacks
+if has("autocmd")
+  augroup fthacks
+    autocmd BufRead,BufNewFile */Vundlefile setfiletype ruby
+  augroup END
+end
+
 " Indentation
 set autoindent
 set listchars=tab:▸\ ,eol:¬
@@ -24,10 +34,6 @@ let base16colorspace=256
 colorscheme base16-railscasts
 set background=dark
 highlight clear SignColumn
-
-hi NERDTreeDir ctermfg=137
-hi NERDTreeUp ctermfg=137
-hi NERDTreeCWD ctermfg=245
 
 " iTerm stuff
 let &titlestring = expand("%:t")
@@ -51,6 +57,10 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ":t"
 let g:airline_theme="base16"
+
+" Testing
+let g:rspec_runner = "os_x_iterm"
+let g:rspec_command = "!bundle exec rspec {spec}"
 
 " Miscellany
 set autoread
@@ -91,7 +101,6 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
-nnoremap <C-b> :bd<CR>
 
 nnoremap <leader>p :e ~/.vimrc<CR>
 nnoremap <leader>P :e ~/.vim/Vundlefile<CR>
