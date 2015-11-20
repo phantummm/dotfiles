@@ -11,3 +11,5 @@ alias savedots="git -C ~/src/dot-files add -A;git -C ~/src/dot-files commit -m '
 
 alias sz="source ~/.zshrc"
 alias vz="vim ~/.zshrc"
+
+alias rhttp="ruby -run -e httpd . -p 9090"
