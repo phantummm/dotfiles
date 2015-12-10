@@ -12,4 +12,8 @@ alias savedots="git -C ~/src/dot-files add -A;git -C ~/src/dot-files commit -m '
 alias sz="source ~/.zshrc"
 alias vz="vim ~/.zshrc"
 
+alias sq="sqlite3"
+alias sqr="sqlite3 mydata.db < code.sql"
+alias sqq="sqlite3 -echo -header -column mydata.db"
+
 alias rhttp="ruby -run -e httpd . -p 9090"

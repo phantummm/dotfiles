@@ -49,6 +49,9 @@ if has("autocmd")
   augroup END
 end
 
+" Search stuff
+let g:ag_working_path_mode="r"
+
 " Airline setup
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
