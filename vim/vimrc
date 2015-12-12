@@ -1,8 +1,6 @@
 set nocompatible
 syntax enable
 
-" Vundler stuff
-" To update, source ~/.vim/Vundlefile and then :PluginInstall
 filetype on
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -14,17 +12,17 @@ endif
 
 call vundle#end()
 
+" Indentation
+set autoindent
+set listchars=tab:▸\ ,eol:¬
+filetype plugin indent on
+
 " Misc filetype hacks
 if has("autocmd")
   augroup fthacks
     autocmd BufRead,BufNewFile */Vundlefile setfiletype ruby
   augroup END
 end
-
-" Indentation
-set autoindent
-set listchars=tab:▸\ ,eol:¬
-filetype plugin indent on
 
 " Color/theme stuff, including monkey-patched colors
 let base16colorspace=256
@@ -58,6 +56,7 @@ let g:airline_theme="base16"
 " Testing
 let g:rspec_runner = "os_x_iterm"
 let g:rspec_command = "!bundle exec rspec {spec}"
+set completefunc=syntaxcomplete#Complete
 
 " Miscellany
 set autoread
@@ -71,6 +70,7 @@ set smartcase
 set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc,*.pyc
 set hidden
 set laststatus=2
+set timeoutlen=1000 ttimeoutlen=0
 
 set clipboard=unnamed
 set mouse=a
@@ -98,6 +98,8 @@ noremap <C-k> <C-w>k
 noremap <C-l> <C-w>l
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
+nnoremap <leader>w :bd<CR>
+nnoremap <leader>W :bd!<CR>
 
 nnoremap <leader>p :e ~/.vimrc<CR>
 nnoremap <leader>P :e ~/.vim/Vundlefile<CR>
