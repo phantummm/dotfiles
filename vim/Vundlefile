@@ -30,3 +30,6 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'vim-scripts/BufOnly.vim'
+
+Bundle 'junegunn/goyo.vim'
+Bundle 'reedes/vim-pencil'
