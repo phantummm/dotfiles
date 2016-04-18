@@ -10,7 +10,7 @@ export PATH="/Users/alex/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/l
 export EDITOR="vim"
 
 # rbenv shims
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+eval "$(rbenv init -)"
 
 # nvm
 export NVM_DIR=~/.nvm
@@ -27,3 +27,5 @@ for f in ~/.aliases/*.aliases.local
 do
   source $f
 done
+
+source ~/.opal_env.sh

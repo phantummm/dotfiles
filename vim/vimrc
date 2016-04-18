@@ -75,12 +75,14 @@ let g:pencil#wrapModeDefault = 'soft'
 
 augroup pencil
   autocmd!
-  autocmd FileType markdown,mkd call pencil#init()
+  autocmd FileType markdown,mkd,md call pencil#init()
   autocmd FileType text call pencil#init({'wrap': 'hard'})
 augroup END
 
 " Miscellaneous plugin stuff
-let NERDTreeQuitOnOpen = 1
+let NERDTreeQuitOnOpen=1
+let g:NERDTreeWinSize=50
+" let g:ctrlp_max_files=0
 
 " Settings
 set autoread
@@ -91,10 +93,12 @@ set number
 set ruler
 set showcmd
 set smartcase
-set wildignore=log/**,node_modules/**,target/**,tmp/**,*.rbc,*.pyc
+set wildignore=log/**,*/node_modules/**,target/**,tmp/**,vendor/**,public/**,*.rbc,*.pyc
 set hidden
 set laststatus=2
 set timeoutlen=1000 ttimeoutlen=0
+set so=5
+set noswapfile
 
 set clipboard=unnamed
 set mouse=a
@@ -108,14 +112,17 @@ set expandtab
 " keyboard shortcuts
 let mapleader = ','
 
-noremap <C-h> <C-w>h
-noremap <C-j> <C-w>j
-noremap <C-k> <C-w>k
-noremap <C-l> <C-w>l
+" language-specific stuff
+nnoremap <leader>e :!mix test<CR>
+nnoremap <leader>E :!mix credo<CR>
+
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 nnoremap <leader>w :bd<CR>
 nnoremap <leader>W :bd!<CR>
+nnoremap <leader>a :nohlsearch<CR>
+
+nnoremap <leader>C :s/^\(\d\+\.\s\{1}\)\(.\+\)$/\1\~\~\2\~\~/<CR>
 
 nnoremap <leader>p :e ~/.vimrc<CR>
 nnoremap <leader>P :e ~/.vim/Vundlefile<CR>
