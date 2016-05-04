@@ -24,6 +24,7 @@ Bundle 'tpope/vim-endwise'
 Bundle 'jiangmiao/auto-pairs'
 
 Bundle 'kien/ctrlp.vim'
+Bundle 'FelikZ/ctrlp-py-matcher'
 Bundle 'scrooloose/nerdtree'
 Bundle 'bling/vim-airline'
 Bundle 'godlygeek/tabular'

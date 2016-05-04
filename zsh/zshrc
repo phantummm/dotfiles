@@ -12,6 +12,9 @@ export EDITOR="vim"
 # rbenv shims
 eval "$(rbenv init -)"
 
+# pyenv shims
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
 # nvm
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh

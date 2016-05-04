@@ -73,16 +73,21 @@ set completefunc=syntaxcomplete#Complete
 let g:vim_markdown_frontmatter=1
 let g:pencil#wrapModeDefault = 'soft'
 
-augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd,md call pencil#init()
-  autocmd FileType text call pencil#init({'wrap': 'hard'})
-augroup END
+if has("autocmd")
+  augroup pencil
+    autocmd!
+    autocmd FileType markdown,mkd,md call pencil#init()
+    autocmd FileType text call pencil#init({'wrap': 'hard'})
+  augroup END
+endif
 
 " Miscellaneous plugin stuff
-let NERDTreeQuitOnOpen=1
 let g:NERDTreeWinSize=50
-" let g:ctrlp_max_files=0
+let g:ctrlp_max_files=0
+let g:ctrlp_max_depth=80
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+let g:ctrlp_extensions = ['undo']
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Settings
 set autoread
