@@ -11,6 +11,7 @@ Bundle 'elzr/vim-json'
 Bundle 'pangloss/vim-javascript'
 Bundle 'wookiehangover/jshint.vim'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'IN3D/vim-raml'
 
 Bundle 'elixir-lang/vim-elixir'
 Bundle 'plasticboy/vim-markdown'
