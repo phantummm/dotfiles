@@ -19,6 +19,9 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
+# rustup
+export PATH="$HOME/.cargo/bin:$PATH"
+
 # load alias files from ~/.aliases
 for f in ~/.aliases/*.aliases
 do
