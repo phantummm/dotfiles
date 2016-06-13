@@ -54,7 +54,6 @@ let g:ag_working_path_mode="r"
 if has("autocmd")
   augroup opal
     autocmd BufNewFile,BufRead ~/Sites/opal/* setlocal noexpandtab
-    autocmd BufNewFile,BufRead ~/Sites/opal/* let b:vimrubocop_config='~/Sites/opal/.rubocop.yml'
   augroup END
 endif
 
@@ -64,9 +63,6 @@ let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ":t"
 let g:airline_theme="base16"
 
-" Testing
-let g:rspec_runner = "os_x_iterm"
-let g:rspec_command = "!bundle exec rspec {spec}"
 set completefunc=syntaxcomplete#Complete
 
 " Prose environment
@@ -117,10 +113,6 @@ set expandtab
 
 " keyboard shortcuts
 let mapleader = ','
-
-" language-specific stuff
-nnoremap <leader>e :!mix test<CR>
-nnoremap <leader>E :!mix credo<CR>
 
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>

@@ -3,8 +3,6 @@ Bundle 'gmarik/vundle'
 Bundle 'vim-ruby/vim-ruby'
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-bundler'
-Bundle 'ngmy/vim-rubocop'
-Bundle 'thoughtbot/vim-rspec'
 Bundle 'sunaku/vim-ruby-minitest'
 
 Bundle 'elzr/vim-json'
