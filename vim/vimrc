@@ -25,7 +25,6 @@ if has("autocmd")
 end
 
 " Color/theme stuff, including monkey-patched colors
-let base16colorspace=256
 colorscheme base16-railscasts
 set background=dark
 highlight clear SignColumn
@@ -98,7 +97,7 @@ set wildignore=log/**,*/node_modules/**,target/**,tmp/**,vendor/**,public/**,*.r
 set hidden
 set laststatus=2
 set timeoutlen=1000 ttimeoutlen=0
-set so=5
+set so=10
 set noswapfile
 set fdm=manual
 
