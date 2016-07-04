@@ -5,18 +5,24 @@ ZSH_THEME="nanotech"
 plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
-export PATH="/Users/alex/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
+if [ -d /Users/alex ]; then
+  export PATH="/Users/alex/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
+fi
+
 export EDITOR="vim"
 
 # rbenv shims
-eval "$(rbenv init -)"
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # pyenv shims
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
 # nvm
 export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
+
+if which brew > /dev/null; then
+  source $(brew --prefix nvm)/nvm.sh
+fi
 
 # rustup
 export PATH="$HOME/.cargo/bin:$PATH"
@@ -37,6 +43,6 @@ if [ -f ~/.home_env.sh ]; then
   source ~/.home_env.sh
 fi
 
-if [ -f ~/.opal_env.sh ]; then
-  source ~/.opal_env.sh
+if [ -f ~/.work_env.sh ]; then
+  source ~/.work_env.sh
 fi
