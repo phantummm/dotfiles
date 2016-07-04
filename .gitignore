@@ -1,1 +1,4 @@
 aliases/*.local
+
+weechat/logs
+weechat/*.log
