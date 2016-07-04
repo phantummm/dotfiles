@@ -33,4 +33,10 @@ do
   source $f
 done
 
-source ~/.opal_env.sh
+if [ -f ~/.home_env.sh ]; then
+  source ~/.home_env.sh
+fi
+
+if [ -f ~/.opal_env.sh ]; then
+  source ~/.opal_env.sh
+fi
