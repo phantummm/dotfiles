@@ -20,3 +20,4 @@ alias rhttp="ruby -run -e httpd . -p 9090"
 
 alias notes="vim +Goyo ~/notes"
 alias mpages="vim +Goyo ~/mpages"
+alias ack-rails='ack --ignore-dir=public/assets --ignore-dir=log --ignore-dir=doc --ignore-dir=db/migrate'

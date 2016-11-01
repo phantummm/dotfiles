@@ -16,6 +16,7 @@ Bundle 'rust-lang/rust.vim'
 Bundle 'lambdatoast/elm.vim'
 
 Bundle 'altercation/vim-colors-solarized.git'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 
 Bundle 'rking/ag.vim'
 

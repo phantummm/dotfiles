@@ -26,7 +26,7 @@ if has("autocmd")
 end
 
 " Color/theme stuff, including monkey-patched colors
-colorscheme solarized
+colorscheme tomorrow-night
 set background=dark
 highlight clear SignColumn
 
@@ -50,18 +50,11 @@ end
 " Search stuff
 let g:ag_working_path_mode="r"
 
-" Project/filetype-specific stuff
-if has("autocmd")
-  augroup opal
-    autocmd BufNewFile,BufRead ~/Sites/opal/* setlocal noexpandtab
-  augroup END
-endif
-
 " Airline setup
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ":t"
-let g:airline_theme="base16"
+let g:airline_theme="tomorrow"
 
 set completefunc=syntaxcomplete#Complete
 
@@ -78,7 +71,8 @@ if has("autocmd")
 endif
 
 " Miscellaneous plugin stuff
-let g:NERDTreeWinSize=50
+let g:NERDTreeWinSize=35
+let g:NERDSpaceDelims=1
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=80
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
@@ -101,6 +95,7 @@ set timeoutlen=1000 ttimeoutlen=0
 set so=10
 set noswapfile
 set fdm=manual
+set diffopt=filler,iwhite
 
 set clipboard=unnamed
 set mouse=a
