@@ -7,7 +7,6 @@ Bundle 'sunaku/vim-ruby-minitest'
 
 Bundle 'elzr/vim-json'
 Bundle 'pangloss/vim-javascript'
-Bundle 'wookiehangover/jshint.vim'
 Bundle 'kchmck/vim-coffee-script'
 Bundle 'IN3D/vim-raml'
 
@@ -17,6 +16,7 @@ Bundle 'rust-lang/rust.vim'
 Bundle 'lambdatoast/elm.vim'
 
 Bundle 'altercation/vim-colors-solarized.git'
+Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 
 Bundle 'rking/ag.vim'
 
