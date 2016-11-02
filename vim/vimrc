@@ -78,7 +78,7 @@ if has("autocmd")
 endif
 
 " Miscellaneous plugin stuff
-let g:NERDTreeWinSize=50
+let g:NERDTreeWinSize=30
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=80
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
