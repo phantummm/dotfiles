@@ -106,6 +106,9 @@ set tabstop=2
 set backspace=2
 set expandtab
 
+" custom commands
+command PPJson :%!python -m json.tool
+
 " keyboard shortcuts
 let mapleader = ','
 
