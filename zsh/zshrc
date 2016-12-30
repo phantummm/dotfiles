@@ -11,6 +11,9 @@ fi
 
 export EDITOR="vim"
 
+# yarn
+export PATH="$PATH:`yarn global bin`"
+
 # rbenv shims
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
