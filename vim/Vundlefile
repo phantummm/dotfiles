@@ -17,6 +17,7 @@ Bundle 'lambdatoast/elm.vim'
 
 Bundle 'altercation/vim-colors-solarized.git'
 Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
+Bundle 'morhetz/gruvbox'
 
 Bundle 'rking/ag.vim'
 

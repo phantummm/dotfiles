@@ -26,7 +26,7 @@ if has("autocmd")
 end
 
 " Color/theme stuff, including monkey-patched colors
-colorscheme tomorrow-night
+colorscheme gruvbox
 set background=dark
 highlight clear SignColumn
 
@@ -54,7 +54,7 @@ let g:ag_working_path_mode="r"
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ":t"
-let g:airline_theme="tomorrow"
+let g:airline_theme="gruvbox"
 
 set completefunc=syntaxcomplete#Complete
 
@@ -126,6 +126,7 @@ nnoremap <leader>S :source ~/.vimrc<CR>
 
 nnoremap <leader>g :Goyo<CR>
 nnoremap <leader>d :NERDTreeToggle<CR>
+nnoremap <leader>D :NERDTree %<CR>
 nnoremap <leader>f :NERDTreeFind<CR>
 nnoremap <leader>t :CtrlP<CR>
 nnoremap <leader>T :CtrlPClearCache<CR>:CtrlP<CR>
