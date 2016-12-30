@@ -71,7 +71,7 @@ if has("autocmd")
 endif
 
 " Miscellaneous plugin stuff
-let g:NERDTreeWinSize=35
+let g:NERDTreeWinSize=30
 let g:NERDSpaceDelims=1
 let g:ctrlp_max_files=0
 let g:ctrlp_max_depth=80
