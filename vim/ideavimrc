@@ -1,0 +1,16 @@
+let mapleader = ','
+nmap <Tab> :action NextTab<CR>
+
+nmap <leader>d :action Back<CR>
+nmap <leader>f :action Forward<CR>
+nmap <leader>w :action CloseEditor<CR>
+nmap <leader>W :action CloseAllEditorsButActive<CR>
+
+nmap <leader>e :action ShowErrorDescription<CR>
+nmap <leader>r :action FileStructurePopup<CR>
+nmap <leader>t :action SearchEverywhere<CR>
+nmap <leader>a :action ShowIntentionActions<CR>
+nmap <leader>b :action RecentFiles<CR>
+
+nmap <leader>p :e ~/.ideavimrc<CR>
+map <silent> <leader>S :source ~/.ideavimrc<CR>
