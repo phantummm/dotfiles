@@ -11,41 +11,52 @@ fi
 
 export EDITOR="vim"
 
-# yarn
-export PATH="$PATH:`yarn global bin`"
+# # yarn
+# export PATH="$PATH:`yarn global bin`"
 
-# rbenv shims
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# # rbenv shims
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# pyenv shims
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+# # pyenv shims
+# if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
-# nvm
-export NVM_DIR=~/.nvm
+# # nvm
+# export NVM_DIR=~/.nvm
 
-if which brew > /dev/null; then
-  source $(brew --prefix nvm)/nvm.sh
-fi
+# if which brew > /dev/null; then
+  # source $(brew --prefix nvm)/nvm.sh
+# fi
 
-# rustup
-export PATH="$HOME/.cargo/bin:$PATH"
+# # rustup
+# export PATH="$HOME/.cargo/bin:$PATH"
 
 # load alias files from ~/.aliases
-for f in ~/.aliases/*.aliases
-do
-  source $f
-done
+# for f in ~/.aliases/*.aliases
+# do
+  # source $f
+# done
 
-# apply local alias files to override files from SCM
-for f in ~/.aliases/*.aliases.local
-do
-  source $f
-done
+# # apply local alias files to override files from SCM
+# for f in ~/.aliases/*.aliases.local
+# do
+  # source $f
+# done
 
-if [ -f ~/.home_env.sh ]; then
-  source ~/.home_env.sh
+# if [ -f ~/.home_env.sh ]; then
+  # source ~/.home_env.sh
+# fi
+
+# if [ -f ~/.work_env.sh ]; then
+  # source ~/.work_env.sh
+# fi
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
+
+
+if [[ -d "$HOME/nub" ]]; then
+	eval "$($HOME/nub/bin/nub init -)"
 fi
 
-if [ -f ~/.work_env.sh ]; then
-  source ~/.work_env.sh
-fi
+alias cdn='cd ~/source/nutshell'

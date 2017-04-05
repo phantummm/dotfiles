@@ -1,10 +1,5 @@
 Bundle 'gmarik/vundle'
 
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-bundler'
-Bundle 'sunaku/vim-ruby-minitest'
-
 Bundle 'elzr/vim-json'
 Bundle 'pangloss/vim-javascript'
 Bundle 'mxw/vim-jsx'
@@ -16,8 +11,6 @@ Bundle 'plasticboy/vim-markdown'
 Bundle 'rust-lang/rust.vim'
 Bundle 'lambdatoast/elm.vim'
 
-Bundle 'altercation/vim-colors-solarized.git'
-Bundle 'chriskempson/tomorrow-theme', {'rtp': 'vim/'}
 Bundle 'morhetz/gruvbox'
 
 Bundle 'rking/ag.vim'
