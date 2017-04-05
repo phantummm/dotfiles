@@ -1,16 +1,42 @@
+set visualbell
+set noerrorbells
+
 let mapleader = ','
-nmap <Tab> :action NextTab<CR>
+
+
+" vim stuff
+
+inoremap <C-q> <Esc>`^
+noremap <C-q> <Esc>
+vnoremap <C-q> <Esc>
+cmap <C-q> <C-c>
+
+vnoremap < <gv
+vnoremap > >gv
+
+noremap <C-j> gj<C-e>
+noremap <C-k> gk<C-y>
+
+nmap <leader>I ggvG=
+
+nmap <leader>p :e ~/.ideavimrc<CR>
+nmap <silent> <leader>S :source ~/.ideavimrc<CR>
+
+
+" IDE stuff
 
 nmap <leader>d :action Back<CR>
 nmap <leader>f :action Forward<CR>
 nmap <leader>w :action CloseEditor<CR>
 nmap <leader>W :action CloseAllEditorsButActive<CR>
+nmap <leader>v :action SplitVertically<CR>
+nmap <leader>h :action ToggleInlineHintsAction<CR>
 
 nmap <leader>e :action ShowErrorDescription<CR>
 nmap <leader>r :action FileStructurePopup<CR>
 nmap <leader>t :action SearchEverywhere<CR>
+nmap <leader>T :action GotoFile<CR>
+nmap <leader>C :action GotoClass<CR>
 nmap <leader>a :action ShowIntentionActions<CR>
 nmap <leader>b :action RecentFiles<CR>
-
-nmap <leader>p :e ~/.ideavimrc<CR>
-map <silent> <leader>S :source ~/.ideavimrc<CR>
+noremap - :action ShowNavBar<CR>
