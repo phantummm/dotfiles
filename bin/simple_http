@@ -3,6 +3,7 @@
 
 from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
 from optparse import OptionParser
+import json
 
 class RequestHandler(BaseHTTPRequestHandler):
     
@@ -30,7 +31,8 @@ class RequestHandler(BaseHTTPRequestHandler):
         length = int(content_length[0]) if content_length else 0
         
         print(request_headers)
-        print(self.rfile.read(length))
+        parsed_json = json.loads(self.rfile.read(length))
+        print(json.dumps(parsed_json, indent=4))
         print("<----- Request End -----\n")
         
         self.send_response(200)
