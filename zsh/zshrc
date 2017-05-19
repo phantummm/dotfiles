@@ -11,11 +11,11 @@ fi
 
 export EDITOR="vim"
 
-# # yarn
-# export PATH="$PATH:`yarn global bin`"
+# yarn
+export PATH="$PATH:`yarn global bin`"
 
-# # rbenv shims
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# rbenv shims
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # # pyenv shims
 # if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
