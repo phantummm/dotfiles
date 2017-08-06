@@ -2,7 +2,7 @@
 export ZSH=$HOME/.oh-my-zsh
 
 ZSH_THEME="nanotech"
-plugins=(git)
+plugins=(git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 if [ -d /Users/alex ]; then
@@ -15,6 +15,7 @@ export EDITOR="vim"
 export PATH="$PATH:`yarn global bin`"
 
 # rbenv shims
+export PATH="$HOME/.rbenv/bin:$PATH"''
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # asdf version-manager
@@ -30,3 +31,5 @@ alias cdth='cd ~/p/gruvbox-dark-ui'
 if [[ -d "$HOME/nub" ]]; then
 	eval "$($HOME/nub/bin/nub init -)"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
