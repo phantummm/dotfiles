@@ -24,6 +24,8 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # aliases
 alias cdn='cd ~/source/nutshell'
+alias cdncs='cd ~/source/nutshell/client/client_modules/nutshell-client-shared'
+alias cdnce='cd ~/source/nutshell/client-extensions'
 alias cdf='cd ~/flux'
 alias cdth='cd ~/p/gruvbox-dark-ui'
 
