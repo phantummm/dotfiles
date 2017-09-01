@@ -15,6 +15,7 @@ Plug 'w0rp/ale'
 Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
+Plug 'jiangmiao/auto-pairs'
 
 Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
@@ -32,7 +33,7 @@ call plug#end()
 let g:polyglot_disabled = ['elm', 'javascript', 'jsx']
 
 filetype plugin indent on
-set autoindent
+set smartindent
 set listchars=tab:▸\ ,eol:¬
 
 colorscheme gruvbox
@@ -49,6 +50,7 @@ set noswapfile
 
 set wildignore=log/**,*/node_modules/**,target/**,tmp/**,vendor/**,public/**,*.rbc,*.pyc,elm-stuff/**
 
+set list
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
