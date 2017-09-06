@@ -5,6 +5,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'dyng/ctrlsf.vim'
+Plug 'schickling/vim-bufonly'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
@@ -16,12 +17,14 @@ Plug 'wokalski/autocomplete-flow'
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-endwise'
 
 Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'ElmCast/elm-vim'
+Plug 'vim-ruby/vim-ruby'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -64,6 +67,10 @@ let g:javascript_plugin_flow = 1
 let g:vim_jsx_pretty_colorful_config = 1
 let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
+
+let g:flow#timeout = 5
+let g:flow#autoclose = 1
+let g:flow#enable = 0
 
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
