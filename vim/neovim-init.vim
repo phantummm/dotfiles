@@ -71,6 +71,7 @@ let g:elm_setup_keybindings = 0
 let g:flow#timeout = 5
 let g:flow#autoclose = 1
 let g:flow#enable = 0
+let g:showquickfix = 0
 
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
