@@ -31,6 +31,9 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'flowtype/vim-flow'
 
+Plug 'junegunn/goyo.vim'
+Plug 'reedes/vim-pencil'
+
 call plug#end()
 
 let g:polyglot_disabled = ['elm', 'javascript', 'jsx']
@@ -85,6 +88,8 @@ let g:airline_theme="gruvbox"
 let g:NERDTreeWinSize=30
 let g:NERDSpaceDelims=1
 
+let g:pencil#wrapModeDefault = 'soft'
+
 let mapleader = ','
 
 map <leader>a :nohlsearch<CR>
@@ -106,3 +111,5 @@ map <Tab> :bn<CR>
 map <S-Tab> :bp<CR>
 map <leader>w :bd<CR>
 map <leader>q :q<CR>
+
+map <leader>g :Goyo<CR>
