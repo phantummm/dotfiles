@@ -63,6 +63,7 @@ set tabstop=4
 set wrap!
 set expandtab
 set mouse=a
+set clipboard+=unnamedplus
 
 let g:deoplete#enable_at_startup = 1
 let g:jsx_ext_required = 0
