@@ -5,12 +5,13 @@ Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'dyng/ctrlsf.vim'
-Plug 'schickling/vim-bufonly'
+Plug 'terryma/vim-multiple-cursors'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
+Plug 'schickling/vim-bufonly'
 
 Plug 'w0rp/ale'
 Plug 'wokalski/autocomplete-flow'
@@ -113,5 +114,14 @@ map <S-Tab> :bp<CR>
 map <leader>W :bd<CR>
 map <leader>w :bp<CR>:bd #<CR>
 map <leader>q :q<CR>
+
+nmap <C-F>f <Plug>CtrlSFPrompt
+vmap <C-F>f <Plug>CtrlSFVwordPath
+vmap <C-F>F <Plug>CtrlSFVwordExec
+nmap <C-F>n <Plug>CtrlSFCwordPath
+nmap <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 map <leader>g :Goyo<CR>
