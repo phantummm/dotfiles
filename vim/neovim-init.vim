@@ -110,8 +110,8 @@ map <C-S> <C-w>v
 
 map <Tab> :bn<CR>
 map <S-Tab> :bp<CR>
-map <leader>w :bd<CR>
-map <leader>W :bp<CR>:bd #<CR>
+map <leader>W :bd<CR>
+map <leader>w :bp<CR>:bd #<CR>
 map <leader>q :q<CR>
 
 map <leader>g :Goyo<CR>
