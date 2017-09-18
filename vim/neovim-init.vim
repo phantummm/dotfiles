@@ -3,7 +3,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'ludovicchabant/vim-gutentags'
 Plug 'dyng/ctrlsf.vim'
 Plug 'terryma/vim-multiple-cursors'
 
@@ -63,6 +62,7 @@ set softtabstop=4
 set tabstop=4
 set wrap!
 set expandtab
+set colorcolumn=100
 set mouse=a
 set clipboard+=unnamedplus
 
