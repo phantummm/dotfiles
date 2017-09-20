@@ -28,6 +28,8 @@ alias cdncs='cd ~/source/nutshell/client/client_modules/nutshell-client-shared'
 alias cdnce='cd ~/source/nutshell/client-extensions'
 alias cdf='cd ~/flux'
 alias cdth='cd ~/p/gruvbox-dark-ui'
+alias cdr='cd ~/r'
+alias cdd='cd ~/r/dotfiles'
 
 # work stuff
 if [[ -d "$HOME/nub" ]]; then
