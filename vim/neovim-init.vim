@@ -98,6 +98,7 @@ map <leader>a :nohlsearch<CR>
 
 map <leader>t :FZF<CR>
 map <leader>d :NERDTreeToggle<CR>
+map <leader>D :NERDTreeFind<CR>
 
 map <leader>S :source ~/.config/nvim/init.vim<CR>
 map <leader>p :e ~/.config/nvim/init.vim<CR>
@@ -111,7 +112,7 @@ map <C-S> <C-w>v
 
 map <Tab> :bn<CR>
 map <S-Tab> :bp<CR>
-map <leader>W :bd<CR>
+map <leader>W :BufOnly<CR>
 map <leader>w :bp<CR>:bd #<CR>
 map <leader>q :q<CR>
 
