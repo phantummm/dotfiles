@@ -62,7 +62,6 @@ set softtabstop=4
 set tabstop=4
 set wrap!
 set expandtab
-set colorcolumn=100
 set mouse=a
 set clipboard+=unnamedplus
 
@@ -85,6 +84,7 @@ let g:ale_linters = { 'javascript': ['eslint', 'flow'] }
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ":t"
+let g:airline#extensions#ale#enabled = 1
 let g:airline_theme="gruvbox"
 
 let g:NERDTreeWinSize=30
