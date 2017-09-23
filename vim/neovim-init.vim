@@ -56,6 +56,7 @@ set scrolloff=10
 set noswapfile
 
 set wildignore=log/**,*/node_modules/**,target/**,tmp/**,vendor/**,public/**,*.rbc,*.pyc,elm-stuff/**
+set completeopt-=preview
 
 set list
 set shiftwidth=4
