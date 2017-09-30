@@ -99,6 +99,12 @@ let g:pencil#wrapModeDefault = 'soft'
 
 let mapleader = ','
 
+if has("autocmd")
+  augroup fthacks
+      autocmd FileType markdown let b:deoplete_disable_auto_complete=1
+  augroup END
+end
+
 map <leader>a :nohlsearch<CR>
 
 map <leader>t :FZF<CR>
