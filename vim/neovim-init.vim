@@ -103,6 +103,12 @@ if has("autocmd")
   augroup fthacks
       autocmd FileType markdown let b:deoplete_disable_auto_complete=1
   augroup END
+
+  augroup pencil
+    autocmd!
+    autocmd FileType markdown,mkd,md call pencil#init()
+    autocmd FileType text call pencil#init({'wrap': 'hard'})
+  augroup END
 end
 
 map <leader>a :nohlsearch<CR>
