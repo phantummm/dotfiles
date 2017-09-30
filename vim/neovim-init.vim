@@ -75,6 +75,8 @@ let g:vim_jsx_pretty_colorful_config = 1
 let g:elm_format_autosave = 1
 let g:elm_setup_keybindings = 0
 
+let g:neosnippet#snippets_directory='~/.config/snippets'
+
 let g:flow#timeout = 5
 let g:flow#autoclose = 1
 let g:flow#enable = 0
@@ -145,5 +147,12 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
+
+imap <C-l>     <Plug>(neosnippet_expand_or_jump)
+smap <C-l>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-l>     <Plug>(neosnippet_expand_target)
+smap <expr><TAB> neosnippet#expandable_or_jumpable()
+    \ ? "\<Plug>(neosnippet_expand_or_jump)"
+    \ : "\<TAB>"
 
 map <leader>g :Goyo<CR>
