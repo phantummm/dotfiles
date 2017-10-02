@@ -120,7 +120,11 @@ map <leader>d :NERDTreeToggle<CR>
 map <leader>D :NERDTreeFind<CR>
 
 map <leader>S :source ~/.config/nvim/init.vim<CR>
-map <leader>p :e ~/.config/nvim/init.vim<CR>
+map <leader>r :e ~/.config/nvim/init.vim<CR>
+
+map <leader>y "*y
+map <leader>p "*p
+map <leader>P "*P
 
 map <C-h> <C-w>h
 map <C-j> <C-w>j
