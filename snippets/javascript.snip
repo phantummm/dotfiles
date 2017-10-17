@@ -17,3 +17,17 @@ options     head
 			expect(shallowComponent).toMatchSnapshot();
 		});
 	});
+
+snippet     jest-spec
+abbr        jspec
+options     head
+	/* @flow */
+	/* eslint-env jest */
+
+	import {${1:functionName}} from './${2:function-path}';
+
+	describe('$1()', () => {
+		it('${3:#:should}', () => {
+			${0}
+		});
+	});
