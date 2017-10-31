@@ -93,7 +93,7 @@ let g:airline#extensions#tabline#fnamemod = ":t"
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme="gruvbox"
 
-let g:NERDTreeWinSize=30
+let g:NERDTreeWinSize=80
 let g:NERDSpaceDelims=1
 
 let g:NERDSpaceDelims=1
@@ -105,6 +105,7 @@ let mapleader = ','
 if has("autocmd")
   augroup fthacks
       autocmd FileType markdown let b:deoplete_disable_auto_complete=1
+      autocmd FileType markdown set nocursorline
   augroup END
 
   augroup pencil
