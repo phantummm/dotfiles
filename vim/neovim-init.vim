@@ -93,7 +93,7 @@ let g:airline#extensions#tabline#fnamemod = ":t"
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme="gruvbox"
 
-let g:NERDTreeWinSize=80
+let g:NERDTreeWinSize=60
 let g:NERDSpaceDelims=1
 
 let g:NERDSpaceDelims=1
