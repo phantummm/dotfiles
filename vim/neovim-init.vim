@@ -25,20 +25,18 @@ Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 
 Plug 'ElmCast/elm-vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'vim-ruby/vim-ruby'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'othree/javascript-libraries-syntax.vim'
+Plug 'StanAngeloff/php.vim'
 Plug 'flowtype/vim-flow'
 
 Plug 'junegunn/goyo.vim'
 Plug 'reedes/vim-pencil'
 
 call plug#end()
-
-let g:polyglot_disabled = ['elm', 'javascript', 'jsx']
 
 filetype plugin indent on
 set smartindent
@@ -85,7 +83,10 @@ let g:showquickfix = 0
 
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 0
-let g:ale_linters = { 'javascript': ['eslint', 'flow'] }
+let g:ale_linters = {
+            \ 'javascript': ['eslint', 'flow'],
+            \ 'php': []
+            \}
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
