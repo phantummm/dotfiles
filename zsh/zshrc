@@ -11,6 +11,10 @@ fi
 
 export EDITOR="vim"
 
+# Node Version Manager
+export NVM_DIR="$HOME/.nvm"
+. "/usr/local/opt/nvm/nvm.sh"
+
 # yarn
 export PATH="$PATH:`yarn global bin`"
 

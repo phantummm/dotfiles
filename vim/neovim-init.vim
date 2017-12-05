@@ -47,7 +47,6 @@ set background=dark
 
 set number
 set incsearch
-set cursorline
 set showcmd
 set hidden
 set ignorecase
