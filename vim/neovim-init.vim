@@ -25,6 +25,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'morhetz/gruvbox'
 
 Plug 'ElmCast/elm-vim'
+Plug 'elixir-editors/vim-elixir'
 Plug 'vim-ruby/vim-ruby'
 Plug 'pangloss/vim-javascript'
 Plug 'mxw/vim-jsx'
