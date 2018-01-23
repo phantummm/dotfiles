@@ -33,6 +33,8 @@ Plug 'maxmellon/vim-jsx-pretty'
 Plug 'othree/javascript-libraries-syntax.vim'
 Plug 'StanAngeloff/php.vim'
 Plug 'flowtype/vim-flow'
+Plug 'rust-lang/rust.vim'
+Plug 'cespare/vim-toml'
 
 Plug 'junegunn/goyo.vim'
 Plug 'reedes/vim-pencil'

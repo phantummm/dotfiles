@@ -6,7 +6,7 @@ plugins=(git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 if [ -d /Users/alex ]; then
-  export PATH="/Users/alex/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
+  export PATH="/Users/alex/bin:/Users/alex/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
 fi
 
 export EDITOR="vim"
