@@ -120,7 +120,7 @@ end
 
 map <leader>a :nohlsearch<CR>
 
-map <leader>t :FZF<CR>
+map <leader>t :GFiles --recurse-submodule<CR>
 map <leader>d :NERDTreeToggle<CR>
 map <leader>D :NERDTreeFind<CR>
 
