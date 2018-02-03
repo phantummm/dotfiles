@@ -3,9 +3,10 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'zchee/deoplete-jedi'
 Plug 'dyng/ctrlsf.vim'
 Plug 'terryma/vim-multiple-cursors'
+Plug 'zchee/deoplete-jedi'
+Plug 'pbogut/deoplete-elm'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
@@ -43,7 +44,7 @@ call plug#end()
 
 filetype plugin indent on
 set smartindent
-set listchars=tab:▸\ ,eol:¬
+set listchars=tab:→\ ,eol:¬
 
 colorscheme gruvbox
 set background=dark
