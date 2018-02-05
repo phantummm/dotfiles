@@ -122,6 +122,7 @@ end
 map <leader>a :nohlsearch<CR>
 
 map <leader>t :GFiles --recurse-submodule<CR>
+map <leader>T :Files<CR>
 map <leader>d :NERDTreeToggle<CR>
 map <leader>D :NERDTreeFind<CR>
 
