@@ -119,6 +119,17 @@ if has("autocmd")
   augroup END
 end
 
+" Need this stuff to prevent multiple-cursors from borking w/ deoplete
+" Called once right before you start selecting multiple cursors
+function! Multiple_cursors_before()
+    let b:deoplete_disable_auto_complete = 1
+endfunction
+
+" Called once only when the multiple selection is canceled (default <Esc>)
+function! Multiple_cursors_after()
+    let b:deoplete_disable_auto_complete = 0
+endfunction
+
 map <leader>a :nohlsearch<CR>
 
 map <leader>t :GFiles --recurse-submodule<CR>
