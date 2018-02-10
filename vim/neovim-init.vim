@@ -12,6 +12,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 Plug 'schickling/vim-bufonly'
 
@@ -98,8 +99,6 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline_theme="gruvbox"
 
 let g:NERDTreeWinSize=60
-let g:NERDSpaceDelims=1
-
 let g:NERDSpaceDelims=1
 
 let g:pencil#wrapModeDefault = 'soft'
