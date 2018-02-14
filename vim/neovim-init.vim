@@ -38,6 +38,7 @@ Plug 'StanAngeloff/php.vim'
 Plug 'flowtype/vim-flow'
 Plug 'rust-lang/rust.vim'
 Plug 'cespare/vim-toml'
+Plug 'jparise/vim-graphql'
 
 Plug 'junegunn/goyo.vim'
 Plug 'reedes/vim-pencil'
