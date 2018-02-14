@@ -11,6 +11,7 @@ Plug 'pbogut/deoplete-elm'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
@@ -135,6 +136,7 @@ map <leader>t :GFiles --recurse-submodule<CR>
 map <leader>T :Files<CR>
 map <leader>d :NERDTreeToggle<CR>
 map <leader>D :NERDTreeFind<CR>
+map <leader>H :Gbrowse<CR>
 
 map <leader>S :source ~/.config/nvim/init.vim<CR>
 map <leader>r :e ~/.config/nvim/init.vim<CR>
