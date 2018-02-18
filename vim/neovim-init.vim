@@ -116,7 +116,6 @@ if has("autocmd")
   augroup pencil
     autocmd!
     autocmd FileType markdown,mkd,md call pencil#init()
-    autocmd FileType text call pencil#init({'wrap': 'hard'})
   augroup END
 end
 
