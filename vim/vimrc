@@ -123,6 +123,15 @@ nnoremap <leader>w :bd<CR>
 nnoremap <leader>W :bd!<CR>
 nnoremap <leader>a :nohlsearch<CR>
 
+nmap <C-F>f <Plug>CtrlSFPrompt
+vmap <C-F>f <Plug>CtrlSFVwordPath
+vmap <C-F>F <Plug>CtrlSFVwordExec
+nmap <C-F>n <Plug>CtrlSFCwordPath
+nmap <C-F>p <Plug>CtrlSFPwordPath
+nnoremap <C-F>o :CtrlSFOpen<CR>
+nnoremap <C-F>t :CtrlSFToggle<CR>
+inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
+
 nnoremap <leader>C :s/^\(\d\+\.\s\{1}\)\(.\+\)$/\1\~\~\2\~\~/<CR>
 
 nnoremap <leader>p :e ~/.vimrc<CR>
