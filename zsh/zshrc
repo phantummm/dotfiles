@@ -9,7 +9,13 @@ if [ -d /Users/alex ]; then
   export PATH="/Users/alex/bin:/Users/alex/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
 fi
 
-export EDITOR="vim"
+if type nvim > /dev/null 2>&1; then
+  alias vim='nvim'
+  alias vi='nvim'
+  export EDITOR='nvim'
+else
+  export EDITOR='vim'
+fi
 
 # Node Version Manager
 export NVM_DIR="$HOME/.nvm"
