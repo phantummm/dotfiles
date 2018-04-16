@@ -98,7 +98,6 @@ let g:NERDTreeWinSize=60
 let g:NERDSpaceDelims=1
 
 let g:pencil#wrapModeDefault = 'soft'
-
 let mapleader = ','
 
 if has("autocmd")
@@ -141,11 +140,9 @@ map <leader>P "*P
 
 map <C-h> <C-w>h
 map <C-l> <C-w>l
-map <C-j> <C-w>j
-map <C-k> <C-w>k
 
-map <S-j> 5j<CR>
-map <S-k> 5k<CR>
+map <C-j> 5j<CR>
+map <C-k> 5k<CR>
 
 map <Tab> :bn<CR>
 map <S-Tab> :bp<CR>
