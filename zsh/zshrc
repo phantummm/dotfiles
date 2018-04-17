@@ -46,6 +46,8 @@ alias cdth='cd ~/p/gruvbox-dark-ui'
 alias cdr='cd ~/r'
 alias cdd='cd ~/r/dotfiles'
 
+alias gbrm="git branch | grep -v "master" | xargs git branch -D"
+
 commit_dotfiles() {
     if [[ -d ~/r/dotfiles ]]; then
         pushd ~/r/dotfiles && git add -A && git commit -m $1 && git push && popd
