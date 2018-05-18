@@ -31,6 +31,7 @@ nmap <leader>w :action CloseEditor<CR>
 nmap <leader>W :action CloseAllEditorsButActive<CR>
 nmap <leader>v :action SplitVertically<CR>
 nmap <leader>h :action ToggleInlineHintsAction<CR>
+nmap <leader>B :action Annotate<CR>
 
 nmap <leader>e :action ShowErrorDescription<CR>
 nmap <leader>r :action FileStructurePopup<CR>
