@@ -37,6 +37,13 @@ eval "$(pyenv virtualenv-init -)"
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
 
+# syntax-highlighting in less
+# requires highlight (`brew install highlight`)
+export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style relaxedgreen"
+export LESS=" -R"
+alias less='less -m -N -g -i -J --line-numbers --underline-special'
+alias more='less'
+
 # aliases
 alias cdn='cd ~/source/nutshell'
 alias cdncs='cd ~/source/nutshell/client/client_modules/nutshell-client-shared'

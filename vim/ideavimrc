@@ -33,6 +33,7 @@ nmap <leader>v :action SplitVertically<CR>
 nmap <leader>h :action ToggleInlineHintsAction<CR>
 nmap <leader>B :action Annotate<CR>
 
+nmap <leader>n :action RenameElement<CR>
 nmap <leader>e :action ShowErrorDescription<CR>
 nmap <leader>r :action FileStructurePopup<CR>
 nmap <leader>t :action SearchEverywhere<CR>
