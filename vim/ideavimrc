@@ -36,9 +36,11 @@ nmap <leader>B :action Annotate<CR>
 nmap <leader>n :action RenameElement<CR>
 nmap <leader>e :action ShowErrorDescription<CR>
 nmap <leader>r :action FileStructurePopup<CR>
+nmap <leader>R :action RenameElement<CR>
 nmap <leader>t :action SearchEverywhere<CR>
 nmap <leader>T :action GotoFile<CR>
 nmap <leader>C :action GotoClass<CR>
 nmap <leader>a :action ShowIntentionActions<CR>
+nmap <leader>A :action MarkNotificationsAsRead<CR>
 nmap <leader>b :action RecentFiles<CR>
 noremap - :action ShowNavBar<CR>
