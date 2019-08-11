@@ -5,13 +5,16 @@ Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'dyng/ctrlsf.vim'
 Plug 'terryma/vim-multiple-cursors'
+
 Plug 'zchee/deoplete-jedi'
 Plug 'pbogut/deoplete-elm'
 
 Plug 'editorconfig/editorconfig-vim'
+
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
+
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
@@ -19,13 +22,16 @@ Plug 'schickling/vim-bufonly'
 
 Plug 'w0rp/ale'
 Plug 'wokalski/autocomplete-flow'
+Plug 'prettier/vim-prettier'
+
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
 
 Plug 'vim-airline/vim-airline'
-Plug 'morhetz/gruvbox'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'flazz/vim-colorschemes'
 
 Plug 'sheerun/vim-polyglot'
 Plug 'maxmellon/vim-jsx-pretty'
@@ -87,12 +93,17 @@ let g:ale_linters = {
             \ 'javascript': ['eslint', 'flow'],
             \ 'php': []
             \}
+let g:ale_fixers = {
+            \'javascript': ['prettier'],
+            \'python': ['autopep8']
+            \}
+let g:ale_fix_on_save = 1
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ":t"
 let g:airline#extensions#ale#enabled = 1
-let g:airline_theme="gruvbox"
+let g:airline_theme="zenburn"
 
 let g:NERDTreeWinSize=60
 let g:NERDSpaceDelims=1
@@ -110,6 +121,10 @@ if has("autocmd")
     autocmd!
     autocmd FileType markdown,mkd,md call pencil#init()
   augroup END
+
+  " Prettier auto-format
+  let g:prettier#autoformat = 0
+  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 end
 
 " Need this stuff to prevent multiple-cursors from borking w/ deoplete

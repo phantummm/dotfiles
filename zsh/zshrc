@@ -5,6 +5,8 @@ ZSH_THEME="nanotech"
 plugins=(git zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
+unsetopt AUTO_CD
+
 if [ -d /Users/alex ]; then
   export PATH="/Users/alex/bin:/Users/alex/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
 fi
@@ -29,13 +31,16 @@ export PATH="$HOME/.rbenv/bin:$PATH"''
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # pyenv
-export PATH="/Users/alex/.pyenv/bin:$PATH"
+export PATH="/Users/alex/.pyenv/bin:/Users/alex/.local/bin:$PATH"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # asdf version-manager
 . $HOME/.asdf/asdf.sh
 . $HOME/.asdf/completions/asdf.bash
+
+# docker helper functions
+. $HOME/.dockerfunc
 
 # syntax-highlighting in less
 # requires highlight (`brew install highlight`)
