@@ -62,4 +62,10 @@ commit_dotfiles() {
     fi
 }
 
+dbash() {
+    if hash docker 2>/dev/null; then
+        docker exec -it $1 bash
+    fi
+}
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
