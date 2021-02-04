@@ -1,13 +1,11 @@
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'dyng/ctrlsf.vim'
 Plug 'terryma/vim-multiple-cursors'
-
-Plug 'zchee/deoplete-jedi'
-Plug 'pbogut/deoplete-elm'
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -20,30 +18,19 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 Plug 'schickling/vim-bufonly'
 
-Plug 'w0rp/ale'
-Plug 'wokalski/autocomplete-flow'
-Plug 'prettier/vim-prettier'
-
 Plug 'Shougo/neosnippet'
 Plug 'Shougo/neosnippet-snippets'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-endwise'
+Plug 'alvan/vim-closetag'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'flazz/vim-colorschemes'
-
-Plug 'sheerun/vim-polyglot'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'othree/javascript-libraries-syntax.vim'
-Plug 'flowtype/vim-flow'
-Plug 'jparise/vim-graphql'
-Plug 'hail2u/vim-css3-syntax'
-
-Plug 'junegunn/goyo.vim'
-Plug 'reedes/vim-pencil'
+Plug 'gruvbox-community/gruvbox'
 
 call plug#end()
+
+let g:coc_global_extensions = ['coc-solargraph']
 
 filetype plugin indent on
 set smartindent
@@ -65,39 +52,25 @@ set wildignore=log/**,*/node_modules/**,target/**,tmp/**,vendor/**,public/**,*.r
 set completeopt-=preview
 
 set list
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
+set shiftwidth=2
+set softtabstop=2
+set tabstop=2
 set wrap!
 set expandtab
 set mouse=a
 set clipboard+=unnamedplus
 
-let g:deoplete#enable_at_startup = 1
-let g:jsx_ext_required = 0
-let g:javascript_plugin_flow = 1
-let g:vim_jsx_pretty_colorful_config = 1
-let g:elm_format_autosave = 1
-let g:elm_setup_keybindings = 0
+let g:python_host_prog = '/Users/alexhunley/.pyenv/versions/neovim2'
+let g:python3_host_prog = '/Users/alexhunley/.pyenv/versions/neovim3'
+
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
+let g:closetag_filetypes = 'html,xhtml,phtml'
+let g:closetag_xhtml_filetypes = 'xhtml,jsx,tsx'
 
 let g:neosnippet#snippets_directory='~/.config/snippets'
 
-let g:flow#timeout = 5
-let g:flow#autoclose = 1
-let g:flow#enable = 0
-let g:showquickfix = 0
-
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 0
-let g:ale_linters = {
-            \ 'javascript': ['eslint', 'flow'],
-            \ 'php': []
-            \}
-let g:ale_fixers = {
-            \'javascript': ['prettier'],
-            \'python': ['autopep8']
-            \}
-let g:ale_fix_on_save = 1
+let g:ctrlsf_ignore_dir = ['public', 'node_modules', 'venv']
 
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -105,40 +78,26 @@ let g:airline#extensions#tabline#fnamemod = ":t"
 let g:airline#extensions#ale#enabled = 1
 let g:airline_theme="zenburn"
 
-let g:NERDTreeWinSize=60
+let g:NERDTreeWinSize=40
 let g:NERDSpaceDelims=1
 
-let g:pencil#wrapModeDefault = 'soft'
 let mapleader = ','
 
 if has("autocmd")
-  augroup fthacks
-      autocmd FileType markdown let b:deoplete_disable_auto_complete=1
-      autocmd FileType markdown set nocursorline
-  augroup END
-
-  augroup pencil
-    autocmd!
-    autocmd FileType markdown,mkd,md call pencil#init()
-  augroup END
-
   " Prettier auto-format
-  let g:prettier#autoformat = 0
-  autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+  " let g:prettier#autoformat = 0
+  " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
 end
 
-" Need this stuff to prevent multiple-cursors from borking w/ deoplete
-" Called once right before you start selecting multiple cursors
-function! Multiple_cursors_before()
-    let b:deoplete_disable_auto_complete = 1
-endfunction
-
-" Called once only when the multiple selection is canceled (default <Esc>)
-function! Multiple_cursors_after()
-    let b:deoplete_disable_auto_complete = 0
-endfunction
-
 map <leader>a :nohlsearch<CR>
+
+inoremap <silent><expr> <c-space> coc#refresh()
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>h :<C-U>call CocAction('doHover')<CR>
 
 map <leader>t :GFiles --recurse-submodule<CR>
 map <leader>T :Files<CR>
@@ -186,5 +145,3 @@ xmap <C-l>     <Plug>(neosnippet_expand_target)
 smap <expr><TAB> neosnippet#expandable_or_jumpable()
     \ ? "\<Plug>(neosnippet_expand_or_jump)"
     \ : "\<TAB>"
-
-map <leader>g :Goyo<CR>
