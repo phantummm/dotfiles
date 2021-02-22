@@ -38,7 +38,7 @@ export PATH="/Users/alex/.pyenv/bin:$PATH"
 if which pyenv > /dev/null
 	then
 		eval "$(pyenv init -)"
-		eval "$(pyenv virtualenv-init -)"
+    eval "$(pyenv virtualenv-init -)"
 fi
 
 # docker helper functions
@@ -60,6 +60,12 @@ alias cdd='cd ~/r/dotfiles'
 alias gbrm="git branch | grep -v "master" | xargs git branch -D"
 alias gbclean="git branch -vv | awk '/: gone]/{print $1}' | xargs --no-run-if-empty git branch -D"
 
+alias dcr="docker-compose run --rm"
+
+# welcome-specific
+alias list_routes="docker-compose exec backend django-admin show_urls"
+alias run_test="docker-compose exec backend django-admin test --no-input"
+
 commit_dotfiles() {
     if [[ -d ~/r/dotfiles ]]; then
         pushd ~/r/dotfiles && git add -A && git commit -m $1 && git push && popd
@@ -73,3 +79,5 @@ dbash() {
 }
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+[ -f ~/.cargo/env ] && source ~/.cargo/env

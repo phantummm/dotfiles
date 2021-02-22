@@ -30,8 +30,6 @@ Plug 'gruvbox-community/gruvbox'
 
 call plug#end()
 
-let g:coc_global_extensions = ['coc-solargraph']
-
 filetype plugin indent on
 set smartindent
 set listchars=tab:→\ ,eol:¬
@@ -53,15 +51,15 @@ set completeopt-=preview
 
 set list
 set shiftwidth=2
-set softtabstop=2
-set tabstop=2
+set softtabstop=4
+set tabstop=4
 set wrap!
 set expandtab
 set mouse=a
 set clipboard+=unnamedplus
 
-let g:python_host_prog = '/Users/alexhunley/.pyenv/versions/neovim2'
-let g:python3_host_prog = '/Users/alexhunley/.pyenv/versions/neovim3'
+let g:python_host_prog = '/Users/alex/.pyenv/versions/py2nvim/bin/python'
+let g:python3_host_prog = '/Users/alex/.pyenv/versions/py3nvim/bin/python'
 
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
