@@ -121,7 +121,7 @@ map <S-Tab> :bp<CR>
 map <leader>W :BufOnly<CR>
 map <leader>w :bp<CR>:bd #<CR>
 map <leader>q :q<CR>
-map <leader>v :vsplit<CR>:bp<CR>
+map <leader>v :vsplit<CR>
 map <leader>V :split<CR><C-j>
 map <leader>B :Gblame<CR>
 
