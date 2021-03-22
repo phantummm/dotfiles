@@ -78,6 +78,7 @@ let g:airline_theme="zenburn"
 
 let g:NERDTreeWinSize=40
 let g:NERDSpaceDelims=1
+let g:NERDTreeWinPos = "right"
 
 let mapleader = ','
 
