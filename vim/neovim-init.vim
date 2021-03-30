@@ -26,7 +26,9 @@ Plug 'alvan/vim-closetag'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
 Plug 'gruvbox-community/gruvbox'
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -60,6 +62,9 @@ set clipboard+=unnamedplus
 
 let g:python_host_prog = '/Users/alex/.pyenv/versions/py2nvim/bin/python'
 let g:python3_host_prog = '/Users/alex/.pyenv/versions/py3nvim/bin/python'
+
+let g:prettier#autoformat = 1
+let g:prettier#autoformat_require_pragma = 0
 
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
