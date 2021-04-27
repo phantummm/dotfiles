@@ -1,6 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -65,6 +66,7 @@ let g:python3_host_prog = '/Users/alex/.pyenv/versions/py3nvim/bin/python'
 
 let g:prettier#autoformat = 1
 let g:prettier#autoformat_require_pragma = 0
+let g:prettier#exec_cmd_async = 1
 
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
@@ -87,12 +89,6 @@ let g:NERDTreeWinPos = "right"
 
 let mapleader = ','
 
-if has("autocmd")
-  " Prettier auto-format
-  " let g:prettier#autoformat = 0
-  " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
-end
-
 map <leader>a :nohlsearch<CR>
 
 inoremap <silent><expr> <c-space> coc#refresh()
@@ -108,6 +104,8 @@ map <leader>T :Files<CR>
 map <leader>d :NERDTreeToggle<CR>
 map <leader>D :NERDTreeFind<CR>
 map <leader>H :Gbrowse<CR>
+
+map <leader>F <Plug>(PrettierAsync)
 
 map <leader>S :source ~/.config/nvim/init.vim<CR>
 map <leader>r :e ~/.config/nvim/init.vim<CR>
