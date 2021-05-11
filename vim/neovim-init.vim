@@ -110,6 +110,10 @@ map <leader>F <Plug>(PrettierAsync)
 map <leader>S :source ~/.config/nvim/init.vim<CR>
 map <leader>r :e ~/.config/nvim/init.vim<CR>
 
+" Copy filename/filepath, respectively
+nmap ,cf :let @*=expand("%")<CR>
+nmap ,cp :let @*=expand("%:p")<CR>
+
 map <leader>y "*y
 map <leader>p "*p
 map <leader>P "*P
