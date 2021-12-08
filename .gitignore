@@ -1,5 +1,7 @@
 aliases/*.local
 
+nvim/.config/nvim/plugged
+
 weechat/logs
 weechat/*.log
 
