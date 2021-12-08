@@ -1,8 +1,5 @@
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim'
@@ -18,12 +15,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'scrooloose/nerdcommenter'
 Plug 'schickling/vim-bufonly'
-
-Plug 'Shougo/neosnippet'
-Plug 'Shougo/neosnippet-snippets'
-Plug 'jiangmiao/auto-pairs'
-Plug 'tpope/vim-endwise'
-Plug 'alvan/vim-closetag'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -61,20 +52,6 @@ set expandtab
 set mouse=a
 set clipboard+=unnamedplus
 
-let g:python_host_prog = '/Users/alex/.pyenv/versions/py2nvim/bin/python'
-let g:python3_host_prog = '/Users/alex/.pyenv/versions/py3nvim/bin/python'
-
-let g:prettier#autoformat = 1
-let g:prettier#autoformat_require_pragma = 0
-let g:prettier#exec_cmd_async = 1
-
-let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
-let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx'
-let g:closetag_filetypes = 'html,xhtml,phtml'
-let g:closetag_xhtml_filetypes = 'xhtml,jsx,tsx'
-
-let g:neosnippet#snippets_directory='~/.config/snippets'
-
 let g:ctrlsf_ignore_dir = ['public', 'node_modules', 'venv']
 
 let g:airline_powerline_fonts = 1
@@ -90,14 +67,6 @@ let g:NERDTreeWinPos = "right"
 let mapleader = ','
 
 map <leader>a :nohlsearch<CR>
-
-inoremap <silent><expr> <c-space> coc#refresh()
-
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> <leader>h :<C-U>call CocAction('doHover')<CR>
 
 map <leader>t :GFiles --recurse-submodule<CR>
 map <leader>T :Files<CR>
@@ -131,7 +100,7 @@ map <leader>w :bp<CR>:bd #<CR>
 map <leader>q :q<CR>
 map <leader>v :vsplit<CR>
 map <leader>V :split<CR><C-j>
-map <leader>B :Gblame<CR>
+map <leader>B :Git blame<CR>
 
 nmap <C-F>f <Plug>CtrlSFPrompt
 vmap <C-F>f <Plug>CtrlSFVwordPath
@@ -144,10 +113,3 @@ inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
 
 inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
-
-imap <C-l>     <Plug>(neosnippet_expand_or_jump)
-smap <C-l>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-l>     <Plug>(neosnippet_expand_target)
-smap <expr><TAB> neosnippet#expandable_or_jumpable()
-    \ ? "\<Plug>(neosnippet_expand_or_jump)"
-    \ : "\<TAB>"
