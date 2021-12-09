@@ -1,5 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
 
+" LSP stuff
+Plug 'neovim/nvim-lspconfig'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim'
@@ -41,7 +44,7 @@ set scrolloff=10
 set noswapfile
 
 set wildignore=log/**,*/node_modules/**,target/**,tmp/**,vendor/**,public/**,*.rbc,*.pyc,elm-stuff/**
-set completeopt-=preview
+set completeopt=menuone,noinsert,noselect
 
 set list
 set shiftwidth=2
