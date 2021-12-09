@@ -1,5 +1,8 @@
 call plug#begin('~/.config/nvim/plugged')
 
+" LSP stuff
+Plug 'neovim/nvim-lspconfig'
+
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'dyng/ctrlsf.vim'
@@ -24,6 +27,10 @@ Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
+lua << EOF
+require('lspconfig').pylsp.setup{}
+EOF
+
 filetype plugin indent on
 set smartindent
 set listchars=tab:→\ ,eol:¬
@@ -41,7 +48,7 @@ set scrolloff=10
 set noswapfile
 
 set wildignore=log/**,*/node_modules/**,target/**,tmp/**,vendor/**,public/**,*.rbc,*.pyc,elm-stuff/**
-set completeopt-=preview
+set completeopt=menuone,noinsert,noselect
 
 set list
 set shiftwidth=2
