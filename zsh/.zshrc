@@ -9,9 +9,7 @@ source $ZSH/oh-my-zsh.sh
 
 unsetopt AUTO_CD
 
-if [ -d /Users/alex ]; then
-  export PATH="/Users/alex/bin:/Users/alex/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
-fi
+export PATH="$HOME/bin:$HOME/.cargo/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/npm/bin"
 
 if type nvim > /dev/null 2>&1; then
   alias vim='nvim'
@@ -34,10 +32,11 @@ export PATH="$HOME/.rbenv/bin:$PATH"''
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # pyenv
-export PATH="/Users/alex/.pyenv/bin:$PATH"
+export PATH="$HOME/.pyenv/bin:$PATH"
 if which pyenv > /dev/null
 	then
-		eval "$(pyenv init -)"
+      eval "$(pyenv init --path)"
+      eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
 fi
 
@@ -81,3 +80,5 @@ dbash() {
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 [ -f ~/.cargo/env ] && source ~/.cargo/env
+
+export PATH="$HOME/.poetry/bin:$PATH"

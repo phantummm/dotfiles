@@ -35,6 +35,7 @@ set listchars=tab:→\ ,eol:¬
 
 colorscheme gruvbox
 set background=dark
+highlight Normal ctermbg=0
 
 set number
 set incsearch
