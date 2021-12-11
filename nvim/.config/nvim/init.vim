@@ -27,6 +27,8 @@ Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
+lua require('config')
+
 filetype plugin indent on
 set smartindent
 set listchars=tab:→\ ,eol:¬
@@ -81,6 +83,7 @@ map <leader>F <Plug>(PrettierAsync)
 
 map <leader>S :source ~/.config/nvim/init.vim<CR>
 map <leader>r :e ~/.config/nvim/init.vim<CR>
+map <leader>R :e ~/.config/nvim/lua/config.lua<CR>
 
 " Copy filename/filepath, respectively
 nmap ,cf :let @*=expand("%")<CR>
