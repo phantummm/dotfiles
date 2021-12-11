@@ -8,8 +8,9 @@ Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
 
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 Plug 'dyng/ctrlsf.vim'
 Plug 'terryma/vim-multiple-cursors'
 
@@ -77,21 +78,22 @@ let mapleader = ','
 
 map <leader>a :nohlsearch<CR>
 
-map <leader>t :GFiles --recurse-submodule<CR>
-map <leader>T :Files<CR>
+nnoremap <leader>t <cmd>Telescope find_files<cr>
+nnoremap <leader>ff <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 map <leader>d :NERDTreeToggle<CR>
 map <leader>D :NERDTreeFind<CR>
-map <leader>H :Gbrowse<CR>
-
-map <leader>F <Plug>(PrettierAsync)
+map <leader>H :GBrowse<CR>
 
 map <leader>S :source ~/.config/nvim/init.vim<CR>
 map <leader>r :e ~/.config/nvim/init.vim<CR>
 map <leader>R :e ~/.config/nvim/lua/config.lua<CR>
 
 " Copy filename/filepath, respectively
-nmap ,cf :let @*=expand("%")<CR>
-nmap ,cp :let @*=expand("%:p")<CR>
+nmap <leader>cf :let @*=expand("%")<CR>
+nmap <leader>cp :let @*=expand("%:p")<CR>
 
 map <leader>y "*y
 map <leader>p "*p
