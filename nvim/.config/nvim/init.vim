@@ -2,6 +2,11 @@ call plug#begin('~/.config/nvim/plugged')
 
 " LSP stuff
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -53,17 +58,15 @@ set list
 set shiftwidth=2
 set softtabstop=4
 set tabstop=4
-set wrap!
+set nowrap
 set expandtab
 set mouse=a
 set clipboard+=unnamedplus
 
 let g:ctrlsf_ignore_dir = ['public', 'node_modules', 'venv']
 
-let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ":t"
-let g:airline#extensions#ale#enabled = 1
 let g:airline_theme="zenburn"
 
 let g:NERDTreeWinSize=40
@@ -94,12 +97,6 @@ map <leader>y "*y
 map <leader>p "*p
 map <leader>P "*P
 
-map <C-h> <C-w>h
-map <C-l> <C-w>l
-
-map <C-j> 5j<CR>
-map <C-k> 5k<CR>
-
 map <Tab> :bn<CR>
 map <S-Tab> :bp<CR>
 map <leader>W :BufOnly<CR>
@@ -117,6 +114,3 @@ nmap <C-F>p <Plug>CtrlSFPwordPath
 nnoremap <C-F>o :CtrlSFOpen<CR>
 nnoremap <C-F>t :CtrlSFToggle<CR>
 inoremap <C-F>t <Esc>:CtrlSFToggle<CR>
-
-inoremap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
-inoremap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"

@@ -66,8 +66,8 @@ alias list_routes="docker-compose exec backend django-admin show_urls"
 alias run_test="docker-compose exec backend django-admin test --no-input"
 
 commit_dotfiles() {
-    if [[ -d ~/r/dotfiles ]]; then
-        pushd ~/r/dotfiles && git add -A && git commit -m $1 && git push && popd
+    if [[ -d ~/.dotfiles ]]; then
+        pushd ~/.dotfiles && git add -A && git commit -m $1 && git push && popd
     fi
 }
 
