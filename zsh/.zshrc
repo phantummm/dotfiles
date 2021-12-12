@@ -45,13 +45,6 @@ if [ -f "~/.dockerfunc" ]; then
 	. $HOME/.dockerfunc
 fi
 
-# syntax-highlighting in less
-# requires highlight (`brew install highlight`)
-# export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style relaxedgreen"
-# export LESS=" -R"
-# alias less='less -m -N -g -i -J --line-numbers --underline-special'
-# alias more='less'
-
 # aliases
 alias cdr='cd ~/r'
 alias cdd='cd ~/r/dotfiles'
@@ -81,4 +74,8 @@ dbash() {
 
 [ -f ~/.cargo/env ] && source ~/.cargo/env
 
+# Poetry
 export PATH="$HOME/.poetry/bin:$PATH"
+
+# Golang
+export PATH="$PATH:/usr/local/go/bin"
