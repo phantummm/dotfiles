@@ -1,0 +1,8 @@
+remove Lock = Caps_Lock
+keysym Caps_Lock = Control_L
+add Control = Control_L
+keysym Super_L = Control_L
+keycode  43 = h H Left H
+keycode  44 = j J Down J
+keycode  45 = k K Up K
+keycode  46 = l L Right L
