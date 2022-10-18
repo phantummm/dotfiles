@@ -101,6 +101,7 @@ lspconfig.sumneko_lua.setup({
     },
 })
 lspconfig.pyright.setup({})
+lspconfig.rust_analyzer.setup({})
 
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspAttached',
@@ -163,6 +164,11 @@ require('nvim-tree').setup({
 
 vim.keymap.set('n', '<leader>d', '<cmd>:NvimTreeToggle<cr>', {})
 vim.keymap.set('n', '<leader>D', '<cmd>:NvimTreeFindFile<cr>', {})
+
+require('gruvbox').setup({
+    contrast = 'hard',
+    italic = false,
+})
 
 vim.cmd("colorscheme gruvbox")
 
