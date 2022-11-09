@@ -13,6 +13,9 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.expandtab = true
 
+vim.opt.termguicolors = true
+vim.opt.background = 'dark'
+
 vim.g.mapleader = ','
 vim.keymap.set({'n', 'x'}, 'cp', '"+y')
 vim.keymap.set({'n', 'x'}, 'cv', '"+p')
@@ -20,8 +23,9 @@ vim.keymap.set({'n', 'x'}, 'cv', '"+p')
 vim.keymap.set({'n'}, '<leader>r', '<cmd>e ' .. config_path .. '<cr>')
 vim.keymap.set({'n'}, '<leader>R', '<cmd>source ' .. config_path .. '<cr>')
 
-vim.opt.termguicolors = true
-vim.opt.background = 'dark'
+vim.keymap.set({'n'}, '<leader>w', '<cmd>bd<cr>')
+vim.keymap.set({'n'}, '<Tab>', '<cmd>bn<cr>')
+vim.keymap.set({'n'}, '<S-Tab>', '<cmd>bp<cr>')
 
 -- plugins
 -- packer bootstrap
@@ -46,11 +50,21 @@ end
 require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
+    -- lsp
     use 'neovim/nvim-lspconfig'
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
-    use 'nvim-treesitter/nvim-treesitter'
 
+    -- autocomplete/snippets
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/cmp-vsnip'
+    use 'hrsh7th/vim-vsnip'
+    use 'hrsh7th/nvim-cmp'
+
+    use 'nvim-treesitter/nvim-treesitter'
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
         requires = { {'nvim-lua/plenary.nvim'} }
@@ -66,6 +80,12 @@ require('packer').startup(function(use)
     -- themes/UI
     use 'ellisonleao/gruvbox.nvim'
     use 'nvim-lualine/lualine.nvim'
+    use {
+        'akinsho/bufferline.nvim',
+        tag = "v3.*",
+        requires = 'nvim-tree/nvim-web-devicons'
+    }
+
 
     if install_plugins then
         print('Syncing packer...')
@@ -84,12 +104,25 @@ local lsp_defaults = {
     end
 }
 
+require('mason').setup()
+require('mason-lspconfig').setup({
+    ensure_installed = {
+        "sumneko_lua",
+        "rust_analyzer",
+        "pyright",
+        "bashls",
+    }
+})
+
+local cmp_capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
 lspconfig.util.default_config = vim.tbl_deep_extend(
     'force',
     lspconfig.util.default_config,
-    lsp_defaults
+    lsp_defaults,
+    { capabilities = cmp_capabilities }
 )
+
 
 lspconfig.sumneko_lua.setup({
     settings = {
@@ -128,14 +161,25 @@ vim.api.nvim_create_autocmd('User', {
     end
 })
 
-require('mason').setup()
-require('mason-lspconfig').setup({
-    ensure_installed = {
-        "sumneko_lua",
-        "rust_analyzer",
-        "pyright",
-        "bashls",
-    }
+local cmp = require('cmp')
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            vim.fn['vsnip#anonymous'](args.body)
+        end,
+    },
+    mapping = cmp.mapping.preset.insert({
+		['<C-b>'] = cmp.mapping.scroll_docs(-4),
+		['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+		['<C-e>'] = cmp.mapping.abort(),
+		['<CR>'] = cmp.mapping.confirm({ select = true }),
+    }),
+	sources = cmp.config.sources({
+		{ name = 'nvim_lsp' },
+	}, {
+		{ name = 'buffer' },
+	}),
 })
 
 require('nvim-treesitter.configs').setup({
@@ -172,6 +216,7 @@ require('gruvbox').setup({
 
 vim.cmd("colorscheme gruvbox")
 
+require('bufferline').setup({})
 require('lualine').setup({
     options = {
         theme = 'gruvbox-material',
