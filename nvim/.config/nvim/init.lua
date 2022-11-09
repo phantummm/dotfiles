@@ -24,6 +24,7 @@ vim.keymap.set({'n'}, '<leader>r', '<cmd>e ' .. config_path .. '<cr>')
 vim.keymap.set({'n'}, '<leader>R', '<cmd>source ' .. config_path .. '<cr>')
 
 vim.keymap.set({'n'}, '<leader>w', '<cmd>bd<cr>')
+vim.keymap.set({'n'}, '<leader>W', '<cmd>%bd|e#|bd#<cr>')
 vim.keymap.set({'n'}, '<Tab>', '<cmd>bn<cr>')
 vim.keymap.set({'n'}, '<S-Tab>', '<cmd>bp<cr>')
 
@@ -63,6 +64,10 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/vim-vsnip'
     use 'hrsh7th/nvim-cmp'
+
+    -- git
+    use 'lewis6991/gitsigns.nvim'
+    use 'tpope/vim-fugitive'
 
     use 'nvim-treesitter/nvim-treesitter'
     use {
@@ -208,6 +213,8 @@ require('nvim-tree').setup({
 
 vim.keymap.set('n', '<leader>d', '<cmd>:NvimTreeToggle<cr>', {})
 vim.keymap.set('n', '<leader>D', '<cmd>:NvimTreeFindFile<cr>', {})
+
+require('gitsigns').setup()
 
 require('gruvbox').setup({
     contrast = 'hard',
