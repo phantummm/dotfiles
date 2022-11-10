@@ -138,7 +138,10 @@ lspconfig.sumneko_lua.setup({
         },
     },
 })
-lspconfig.pyright.setup({})
+lspconfig.pyright.setup({
+    -- Don't love this, but it sucks when broken, and can be activated in project
+    reportGeneralTypeIssues = false
+})
 lspconfig.rust_analyzer.setup({})
 
 vim.api.nvim_create_autocmd('User', {
