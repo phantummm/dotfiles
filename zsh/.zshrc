@@ -21,8 +21,8 @@ fi
 
 # Node Version Manager
 export NVM_DIR="$HOME/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion" ] && . "/usr/local/opt/nvm/etc/bash_completion"  # This loads nvm bash_completion
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
 # yarn
 # export PATH="$PATH:`yarn global bin`"
@@ -43,6 +43,10 @@ fi
 # docker helper functions
 if [ -f "~/.dockerfunc" ]; then
 	. $HOME/.dockerfunc
+fi
+
+if [[ -d /Users/ahunley ]]; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # aliases
@@ -79,3 +83,5 @@ export PATH="$HOME/.poetry/bin:$PATH"
 
 # Golang
 export PATH="$PATH:/usr/local/go/bin"
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

@@ -64,6 +64,7 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/vim-vsnip'
     use 'hrsh7th/nvim-cmp'
+    use 'm4xshen/autoclose.nvim'
 
     -- git
     use 'lewis6991/gitsigns.nvim'
@@ -112,10 +113,12 @@ local lsp_defaults = {
 require('mason').setup()
 require('mason-lspconfig').setup({
     ensure_installed = {
-        "sumneko_lua",
+        "lua_ls",
         "rust_analyzer",
         "pyright",
         "bashls",
+        "intelephense",
+        "tsserver",
     }
 })
 
@@ -129,7 +132,7 @@ lspconfig.util.default_config = vim.tbl_deep_extend(
 )
 
 
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
     settings = {
         Lua = {
             diagnostics = {
@@ -143,6 +146,9 @@ lspconfig.pyright.setup({
     reportGeneralTypeIssues = false
 })
 lspconfig.rust_analyzer.setup({})
+lspconfig.bashls.setup({})
+lspconfig.intelephense.setup({})
+lspconfig.tsserver.setup({})
 
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspAttached',
@@ -199,6 +205,9 @@ require('nvim-treesitter.configs').setup({
         'python',
         'bash',
         'rust',
+        'php',
+        'javascript',
+        'typescript',
     },
 })
 
@@ -221,8 +230,14 @@ require('gitsigns').setup()
 
 require('gruvbox').setup({
     contrast = 'hard',
-    italic = false,
+    italic = {
+        strings = false,
+        operators = false,
+        comments = false,
+    },
 })
+
+require('autoclose').setup({})
 
 vim.cmd("colorscheme gruvbox")
 
