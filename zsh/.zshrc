@@ -28,7 +28,7 @@ export NVM_DIR="$HOME/.nvm"
 # export PATH="$PATH:`yarn global bin`"
 
 # rbenv shims
-export PATH="$HOME/.rbenv/bin:$PATH"''
+export PATH="$HOME/.rbenv/shims:$PATH"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # pyenv

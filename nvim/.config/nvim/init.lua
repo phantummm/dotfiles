@@ -25,6 +25,7 @@ vim.keymap.set({'n'}, '<leader>R', '<cmd>source ' .. config_path .. '<cr>')
 
 vim.keymap.set({'n'}, '<leader>w', '<cmd>bd<cr>')
 vim.keymap.set({'n'}, '<leader>W', '<cmd>%bd|e#|bd#<cr>')
+vim.keymap.set({'n'}, '<leader>b', '<cmd>cclose<cr>')
 vim.keymap.set({'n'}, '<Tab>', '<cmd>bn<cr>')
 vim.keymap.set({'n'}, '<S-Tab>', '<cmd>bp<cr>')
 
@@ -72,7 +73,7 @@ require('packer').startup(function(use)
 
     use 'nvim-treesitter/nvim-treesitter'
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
+        'nvim-telescope/telescope.nvim', tag = '0.1.4',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
     use {
@@ -119,6 +120,8 @@ require('mason-lspconfig').setup({
         "bashls",
         "intelephense",
         "tsserver",
+        "tailwindcss",
+        "eslint",
     }
 })
 
@@ -149,6 +152,8 @@ lspconfig.rust_analyzer.setup({})
 lspconfig.bashls.setup({})
 lspconfig.intelephense.setup({})
 lspconfig.tsserver.setup({})
+lspconfig.tailwindcss.setup({})
+lspconfig.eslint.setup({})
 
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspAttached',
