@@ -26,6 +26,7 @@ vim.keymap.set({'n'}, '<leader>R', '<cmd>source ' .. config_path .. '<cr>')
 vim.keymap.set({'n'}, '<leader>w', '<cmd>bd<cr>')
 vim.keymap.set({'n'}, '<leader>W', '<cmd>%bd|e#|bd#<cr>')
 vim.keymap.set({'n'}, '<leader>b', '<cmd>cclose<cr>')
+vim.keymap.set({'n'}, '<leader>v', '<cmd>vsplit<cr>')
 vim.keymap.set({'n'}, '<Tab>', '<cmd>bn<cr>')
 vim.keymap.set({'n'}, '<S-Tab>', '<cmd>bp<cr>')
 
@@ -72,6 +73,7 @@ require('packer').startup(function(use)
     use 'tpope/vim-fugitive'
 
     use 'nvim-treesitter/nvim-treesitter'
+    use 'RRethy/nvim-treesitter-endwise'
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.4',
         requires = { {'nvim-lua/plenary.nvim'} }
@@ -81,7 +83,6 @@ require('packer').startup(function(use)
         requires = {
             'nvim-tree/nvim-web-devicons',
         },
-        tag = 'nightly',
     }
 
     -- themes/UI
@@ -122,6 +123,7 @@ require('mason-lspconfig').setup({
         "tsserver",
         "tailwindcss",
         "eslint",
+        "ruby_ls",
     }
 })
 
@@ -154,6 +156,14 @@ lspconfig.intelephense.setup({})
 lspconfig.tsserver.setup({})
 lspconfig.tailwindcss.setup({})
 lspconfig.eslint.setup({})
+lspconfig.ruby_ls.setup({})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        client.server_capabilities.semanticTokensProvider = nil
+    end,
+});
 
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspAttached',
@@ -202,6 +212,9 @@ cmp.setup({
 })
 
 require('nvim-treesitter.configs').setup({
+    endwise = {
+        enable = true,
+    },
     highlight = {
         enable = true,
     },
@@ -213,6 +226,7 @@ require('nvim-treesitter.configs').setup({
         'php',
         'javascript',
         'typescript',
+        'ruby',
     },
 })
 
