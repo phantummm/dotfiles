@@ -1,21 +1,5 @@
 local config_path = vim.fn.stdpath('config') .. '/init.lua'
 
--- vanilla settings
-vim.opt.number = true
-vim.opt.mouse = ''
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.hlsearch = false
-
-vim.opt.swapfile = false
-
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-
-vim.opt.termguicolors = true
-vim.opt.background = 'dark'
-
 -- plugins
 -- packer bootstrap
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -57,6 +41,12 @@ require('packer').startup(function(use)
     -- git
     use 'lewis6991/gitsigns.nvim'
     use 'tpope/vim-fugitive'
+    use {
+        'github/copilot.vim',
+        config = function()
+            vim.g.copilot_no_tab_map = true
+        end
+    }
 
     use 'nvim-treesitter/nvim-treesitter'
     use 'RRethy/nvim-treesitter-endwise'
@@ -79,7 +69,6 @@ require('packer').startup(function(use)
         tag = "v3.*",
         requires = 'nvim-tree/nvim-web-devicons'
     }
-
 
     if install_plugins then
         print('Syncing packer...')
@@ -150,52 +139,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         client.server_capabilities.semanticTokensProvider = nil
     end,
 });
-
-vim.api.nvim_create_autocmd('User', {
-    pattern = 'LspAttached',
-    desc = 'LSP actions',
-    callback = function()
-        local bufmap = function(mode, lhs, rhs)
-            local opts = { buffer = true }
-            vim.keymap.set(mode, lhs, rhs, opts)
-        end
-
-        bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
-        bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-        bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
-        bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
-        bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
-        bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
-        bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
-        bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
-        bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-        bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
-        bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-        bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-        bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
-    end
-})
-
-local cmp = require('cmp')
-cmp.setup({
-    snippet = {
-        expand = function(args)
-            vim.fn['vsnip#anonymous'](args.body)
-        end,
-    },
-    mapping = cmp.mapping.preset.insert({
-		['<C-b>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.abort(),
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
-    }),
-	sources = cmp.config.sources({
-		{ name = 'nvim_lsp' },
-	}, {
-		{ name = 'buffer' },
-	}),
-})
 
 require('nvim-treesitter.configs').setup({
     endwise = {
@@ -285,6 +228,39 @@ local function close_other_buffers()
     vim.cmd('redrawtabline')
 end
 
+vim.g.copilot_filetypes = {
+    ['*'] = false,
+}
+
+function ToggleCopilotBuffer()
+    local copilot_enabled = vim.b.copilot_enabled or false
+    if not copilot_enabled then
+        vim.b.copilot_enabled = true
+    else
+        vim.b.copilot_enabled = false
+    end
+end
+
+-- vanilla settings
+vim.opt.number = true
+vim.opt.mouse = ''
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = false
+
+vim.opt.swapfile = false
+
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+
+vim.opt.termguicolors = true
+vim.opt.background = 'dark'
+
+vim.opt.formatoptions:remove('o')
+vim.opt.formatoptions:remove('r')
+
+
 -- Keymaps
 vim.g.mapleader = ','
 vim.keymap.set({'n', 'x'}, 'cp', '"+y')
@@ -309,3 +285,58 @@ vim.keymap.set('n', '<leader>D', '<cmd>:NvimTreeFindFile<cr>', {})
 
 vim.keymap.set({'n'}, '<leader>w', close_buffer_smart, {})
 vim.keymap.set({'n'}, '<leader>W', close_other_buffers, {})
+
+vim.keymap.set('i', '<C-l>', 'copilot#Accept("<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+vim.keymap.set('i', '<C-k>', '<Plug>(copilot-next)', {})
+vim.keymap.set('i', '<C-j>', '<Plug>(copilot-previous)', {})
+vim.keymap.set('i', '<C-h>', '<Plug>(copilot-suggest)', {})
+vim.keymap.set({'n'}, '<leader>C', ToggleCopilotBuffer, {noremap=true})
+
+vim.api.nvim_create_autocmd('User', {
+    pattern = 'LspAttached',
+    desc = 'LSP actions',
+    callback = function()
+        local bufmap = function(mode, lhs, rhs)
+            local opts = { buffer = true }
+            vim.keymap.set(mode, lhs, rhs, opts)
+        end
+
+        bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+        bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+        bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+        bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+        bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+        bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+        bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+        bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
+        bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+        bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
+        bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+        bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+        bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+    end
+})
+
+local cmp = require('cmp')
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            vim.fn['vsnip#anonymous'](args.body)
+        end,
+    },
+    mapping = cmp.mapping.preset.insert({
+		['<C-b>'] = cmp.mapping.scroll_docs(-4),
+		['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete(),
+		['<C-e>'] = cmp.mapping.abort(),
+		['<CR>'] = cmp.mapping.confirm({ select = true }),
+    }),
+	sources = cmp.config.sources({
+		{ name = 'nvim_lsp' },
+	}, {
+		{ name = 'buffer' },
+	}),
+})
