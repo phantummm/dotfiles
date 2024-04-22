@@ -16,20 +16,6 @@ vim.opt.expandtab = true
 vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 
-vim.g.mapleader = ','
-vim.keymap.set({'n', 'x'}, 'cp', '"+y')
-vim.keymap.set({'n', 'x'}, 'cv', '"+p')
-
-vim.keymap.set({'n'}, '<leader>r', '<cmd>e ' .. config_path .. '<cr>')
-vim.keymap.set({'n'}, '<leader>R', '<cmd>source ' .. config_path .. '<cr>')
-
-vim.keymap.set({'n'}, '<leader>w', '<cmd>bd<cr>')
-vim.keymap.set({'n'}, '<leader>W', '<cmd>%bd|e#|bd#<cr>')
-vim.keymap.set({'n'}, '<leader>b', '<cmd>cclose<cr>')
-vim.keymap.set({'n'}, '<leader>v', '<cmd>vsplit<cr>')
-vim.keymap.set({'n'}, '<Tab>', '<cmd>bn<cr>')
-vim.keymap.set({'n'}, '<S-Tab>', '<cmd>bp<cr>')
-
 -- plugins
 -- packer bootstrap
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -230,20 +216,11 @@ require('nvim-treesitter.configs').setup({
     },
 })
 
-local telescope_builtin = require('telescope.builtin')
-vim.keymap.set('n', 'ff', telescope_builtin.find_files, {})
-vim.keymap.set('n', 'fg', telescope_builtin.live_grep, {})
-vim.keymap.set('n', 'fb', telescope_builtin.buffers, {})
-vim.keymap.set('n', 'fh', telescope_builtin.help_tags, {})
-
 require('nvim-tree').setup({
     view = {
         side = "right",
     },
 })
-
-vim.keymap.set('n', '<leader>d', '<cmd>:NvimTreeToggle<cr>', {})
-vim.keymap.set('n', '<leader>D', '<cmd>:NvimTreeFindFile<cr>', {})
 
 require('gitsigns').setup()
 
@@ -277,3 +254,58 @@ require('lualine').setup({
         },
     },
 })
+
+local function close_buffer_smart()
+    vim.cmd('bdelete')
+
+    local remaining_buffers = vim.fn.getbufinfo({buflisted = 1})
+    local remaining_count = #remaining_buffers
+
+    if remaining_count == 0 and vim.fn.winnr('$') == 1 and vim.fn.exists('*NvimTreeFindFile') == 1 then
+        vim.cmd('enew')
+        vim.cmd('NvimTreeFindFile')
+    elseif remaining_count > 0 then
+        vim.cmd('bnext')
+    end
+end
+
+local function close_other_buffers()
+    local current_buf = vim.api.nvim_get_current_buf()
+    local buffers = vim.api.nvim_list_bufs()
+
+    for _, buf in ipairs(buffers) do
+        if vim.api.nvim_buf_is_loaded(buf) and buf ~= current_buf then
+            local is_nvim_tree = vim.fn.bufname(buf):match('NvimTree_') ~= nil
+            if not is_nvim_tree then
+                vim.api.nvim_buf_delete(buf, {force = true})
+            end
+        end
+    end
+
+    vim.cmd('redrawtabline')
+end
+
+-- Keymaps
+vim.g.mapleader = ','
+vim.keymap.set({'n', 'x'}, 'cp', '"+y')
+vim.keymap.set({'n', 'x'}, 'cv', '"+p')
+
+vim.keymap.set({'n'}, '<leader>r', '<cmd>e ' .. config_path .. '<cr>')
+vim.keymap.set({'n'}, '<leader>R', '<cmd>source ' .. config_path .. '<cr>')
+
+vim.keymap.set({'n'}, '<leader>b', '<cmd>cclose<cr>')
+vim.keymap.set({'n'}, '<leader>v', '<cmd>vsplit<cr>')
+vim.keymap.set({'n'}, '<Tab>', '<cmd>bn<cr>')
+vim.keymap.set({'n'}, '<S-Tab>', '<cmd>bp<cr>')
+
+local telescope_builtin = require('telescope.builtin')
+vim.keymap.set('n', 'ff', telescope_builtin.find_files, {})
+vim.keymap.set('n', 'fg', telescope_builtin.live_grep, {})
+vim.keymap.set('n', 'fb', telescope_builtin.buffers, {})
+vim.keymap.set('n', 'fh', telescope_builtin.help_tags, {})
+
+vim.keymap.set('n', '<leader>d', '<cmd>:NvimTreeToggle<cr>', {})
+vim.keymap.set('n', '<leader>D', '<cmd>:NvimTreeFindFile<cr>', {})
+
+vim.keymap.set({'n'}, '<leader>w', close_buffer_smart, {})
+vim.keymap.set({'n'}, '<leader>W', close_other_buffers, {})
