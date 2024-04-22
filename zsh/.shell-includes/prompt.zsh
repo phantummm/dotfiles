@@ -19,7 +19,7 @@ function custom_pwd {
 }
 
 function update_prompt {
-    PROMPT="%{$fg[yellow]%}%n %{$fg[cyan]%}@ %{$fg[yellow]%}%m %{$fg[cyan]%}:: %{$fg[yellow]%}$(custom_pwd)%{$fg[cyan]%}$(git_branch) %{$fg[yellow]%}%% "
+    PROMPT="%{$fg[yellow]%}%n %{$fg[cyan]%}@ %{$fg[yellow]%}%m %{$fg[cyan]%}:: %{$fg[yellow]%}$(custom_pwd)%{$fg[cyan]%}$(git_branch) %{$fg[yellow]%}%%%{$reset_color%} "
 }
 
 add-zsh-hook precmd update_prompt
