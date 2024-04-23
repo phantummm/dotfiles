@@ -205,7 +205,7 @@ local function close_buffer_smart()
         vim.cmd('enew')
         vim.cmd('NvimTreeFindFile')
     elseif remaining_count > 0 then
-        vim.cmd('bnext')
+        vim.cmd('bp')
     end
 end
 
@@ -241,6 +241,7 @@ vim.opt.expandtab = true
 vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 
+-- Because ftplugins overwrite formatoptions :(
 vim.cmd([[autocmd BufEnter * set formatoptions-=cro]])
 
 -- Keymaps
@@ -255,6 +256,9 @@ vim.keymap.set({'n'}, '<leader>b', '<cmd>cclose<cr>')
 vim.keymap.set({'n'}, '<leader>v', '<cmd>vsplit<cr>')
 vim.keymap.set({'n'}, '<Tab>', '<cmd>bn<cr>')
 vim.keymap.set({'n'}, '<S-Tab>', '<cmd>bp<cr>')
+vim.keymap.set({'n'}, '<leader>w', close_buffer_smart, {})
+vim.keymap.set({'n'}, '<leader>W', close_other_buffers, {})
+vim.keymap.set({'n'}, '<leader>q', '<cmd>q<cr>', {silent=true})
 
 local telescope_builtin = require('telescope.builtin')
 vim.keymap.set('n', 'ff', telescope_builtin.find_files, {})
@@ -265,8 +269,7 @@ vim.keymap.set('n', 'fh', telescope_builtin.help_tags, {})
 vim.keymap.set('n', '<leader>d', '<cmd>:NvimTreeToggle<cr>', {})
 vim.keymap.set('n', '<leader>D', '<cmd>:NvimTreeFindFile<cr>', {})
 
-vim.keymap.set({'n'}, '<leader>w', close_buffer_smart, {})
-vim.keymap.set({'n'}, '<leader>W', close_other_buffers, {})
+vim.keymap.set('n', '<leader>B', '<cmd>Git blame<cr>', {silent=true})
 
 local copilot_suggestion = require('copilot.suggestion')
 vim.keymap.set({'i'}, '<C-l>', copilot_suggestion.accept, {})
