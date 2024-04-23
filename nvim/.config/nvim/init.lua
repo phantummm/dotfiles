@@ -41,12 +41,7 @@ require('packer').startup(function(use)
     -- git
     use 'lewis6991/gitsigns.nvim'
     use 'tpope/vim-fugitive'
-    use {
-        'github/copilot.vim',
-        config = function()
-            vim.g.copilot_no_tab_map = true
-        end
-    }
+    use 'zbirenbaum/copilot.lua'
 
     use 'nvim-treesitter/nvim-treesitter'
     use 'RRethy/nvim-treesitter-endwise'
@@ -198,6 +193,8 @@ require('lualine').setup({
     },
 })
 
+require('copilot').setup({})
+
 local function close_buffer_smart()
     vim.cmd('bdelete')
 
@@ -228,19 +225,6 @@ local function close_other_buffers()
     vim.cmd('redrawtabline')
 end
 
-vim.g.copilot_filetypes = {
-    ['*'] = false,
-}
-
-function ToggleCopilotBuffer()
-    local copilot_enabled = vim.b.copilot_enabled or false
-    if not copilot_enabled then
-        vim.b.copilot_enabled = true
-    else
-        vim.b.copilot_enabled = false
-    end
-end
-
 -- vanilla settings
 vim.opt.number = true
 vim.opt.mouse = ''
@@ -257,9 +241,7 @@ vim.opt.expandtab = true
 vim.opt.termguicolors = true
 vim.opt.background = 'dark'
 
-vim.opt.formatoptions:remove('o')
-vim.opt.formatoptions:remove('r')
-
+vim.cmd([[autocmd BufEnter * set formatoptions-=cro]])
 
 -- Keymaps
 vim.g.mapleader = ','
@@ -286,14 +268,12 @@ vim.keymap.set('n', '<leader>D', '<cmd>:NvimTreeFindFile<cr>', {})
 vim.keymap.set({'n'}, '<leader>w', close_buffer_smart, {})
 vim.keymap.set({'n'}, '<leader>W', close_other_buffers, {})
 
-vim.keymap.set('i', '<C-l>', 'copilot#Accept("<CR>")', {
-  expr = true,
-  replace_keycodes = false
-})
-vim.keymap.set('i', '<C-k>', '<Plug>(copilot-next)', {})
-vim.keymap.set('i', '<C-j>', '<Plug>(copilot-previous)', {})
-vim.keymap.set('i', '<C-h>', '<Plug>(copilot-suggest)', {})
-vim.keymap.set({'n'}, '<leader>C', ToggleCopilotBuffer, {noremap=true})
+local copilot_suggestion = require('copilot.suggestion')
+vim.keymap.set({'i'}, '<C-l>', copilot_suggestion.accept, {})
+vim.keymap.set({'i'}, '<C-j>', copilot_suggestion.prev, {})
+vim.keymap.set({'i'}, '<C-k>', copilot_suggestion.next, {})
+vim.keymap.set({'i'}, '<C-n>', copilot_suggestion.dismiss, {})
+vim.keymap.set({'n'}, '<leader>C', copilot_suggestion.toggle_auto_trigger, {})
 
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspAttached',
