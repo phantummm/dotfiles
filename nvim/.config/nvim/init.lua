@@ -27,6 +27,10 @@ require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'williamboman/mason.nvim'
     use 'williamboman/mason-lspconfig.nvim'
+    use 'onsails/lspkind.nvim'
+
+    -- copilot
+    use 'zbirenbaum/copilot.lua'
 
     -- autocomplete/snippets
     use 'hrsh7th/cmp-buffer'
@@ -35,18 +39,18 @@ require('packer').startup(function(use)
     use 'hrsh7th/cmp-cmdline'
     use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/vim-vsnip'
+    use 'zbirenbaum/copilot-cmp'
     use 'hrsh7th/nvim-cmp'
     use 'm4xshen/autoclose.nvim'
 
     -- git
     use 'lewis6991/gitsigns.nvim'
     use 'tpope/vim-fugitive'
-    use 'zbirenbaum/copilot.lua'
 
     use 'nvim-treesitter/nvim-treesitter'
     use 'RRethy/nvim-treesitter-endwise'
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.4',
+        'nvim-telescope/telescope.nvim',
         requires = { {'nvim-lua/plenary.nvim'} }
     }
     use {
@@ -136,6 +140,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 });
 
 require('nvim-treesitter.configs').setup({
+    indent = {
+        enable = true,
+    },
     endwise = {
         enable = true,
     },
@@ -193,7 +200,11 @@ require('lualine').setup({
     },
 })
 
-require('copilot').setup({})
+require('copilot').setup({
+    panel = { enabled = false },
+    suggestion = { enabled = false },
+})
+require("copilot_cmp").setup({})
 
 local function close_buffer_smart()
     vim.cmd('bdelete')
@@ -230,6 +241,7 @@ vim.opt.number = true
 vim.opt.mouse = ''
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.smartindent = false
 vim.opt.hlsearch = false
 
 vim.opt.swapfile = false
@@ -271,13 +283,6 @@ vim.keymap.set('n', '<leader>D', '<cmd>:NvimTreeFindFile<cr>', {})
 
 vim.keymap.set('n', '<leader>B', '<cmd>Git blame<cr>', {silent=true})
 
-local copilot_suggestion = require('copilot.suggestion')
-vim.keymap.set({'i'}, '<C-l>', copilot_suggestion.accept, {})
-vim.keymap.set({'i'}, '<C-j>', copilot_suggestion.prev, {})
-vim.keymap.set({'i'}, '<C-k>', copilot_suggestion.next, {})
-vim.keymap.set({'i'}, '<C-n>', copilot_suggestion.dismiss, {})
-vim.keymap.set({'n'}, '<leader>C', copilot_suggestion.toggle_auto_trigger, {})
-
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspAttached',
     desc = 'LSP actions',
@@ -304,22 +309,55 @@ vim.api.nvim_create_autocmd('User', {
 })
 
 local cmp = require('cmp')
+local lspkind = require('lspkind')
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
+
 cmp.setup({
-    snippet = {
-        expand = function(args)
-            vim.fn['vsnip#anonymous'](args.body)
-        end,
+    window = {
+        -- completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
+    performance = {
+        max_view_entries = 20,
     },
     mapping = cmp.mapping.preset.insert({
-		['<C-b>'] = cmp.mapping.scroll_docs(-4),
-		['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
-		['<C-e>'] = cmp.mapping.abort(),
-		['<CR>'] = cmp.mapping.confirm({ select = true }),
+        ["<C-h>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+        ["<C-e>"] = cmp.mapping({
+            i = cmp.mapping.abort(),
+            c = cmp.mapping.close(),
+        }),
+        ['<CR>'] = cmp.mapping({
+            i = function(fallback)
+                if cmp.visible() and cmp.get_active_entry() then
+                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                else
+                    fallback()
+                end
+            end,
+            s = cmp.mapping.confirm({ select = true }),
+            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+        }),
     }),
-	sources = cmp.config.sources({
-		{ name = 'nvim_lsp' },
-	}, {
-		{ name = 'buffer' },
-	}),
+    sources = cmp.config.sources({
+        { name = 'copilot', group_index = 1 },
+        { name = 'nvim_lsp', group_index = 2 },
+        { name = 'path', group_index = 4 },
+    }, {
+            { name = 'buffer' },
+        }),
+    formatting = {
+        format = lspkind.cmp_format({
+            -- mode = 'symbol',
+            maxwidth = 50,
+            ellipsis_char = '...',
+            show_labelDetails = true,
+            before = function (_, vim_item)
+                return vim_item
+            end,
+            symbol_map = { Copilot = "" },
+        })
+    }
 })
