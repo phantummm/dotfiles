@@ -1,0 +1,9 @@
+alias cda='cd ~/s/apps/apps/'
+alias cdapp='cd ~/s/apps/apps/employers/'
+alias cdui='cd ~/s/apps/packages/ui/'
+alias cdadv='cd ~/s/apps/packages/advisors-frontend/'
+alias cdemp='cd ~/s/apps/packages/employers-frontend/'
+alias gbrm='git branch | grep -v "main" | xargs git branch -D'
+alias rof="bin/rspec --only-failures"
+alias gdm="git diff origin/main...HEAD"
+alias chu='bin/chusaku -c "packs/*/app/controllers/**/*_controller.rb"'

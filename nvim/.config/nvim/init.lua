@@ -99,6 +99,7 @@ require('mason-lspconfig').setup({
         "tailwindcss",
         "eslint",
         "ruby_ls",
+        "rubocop",
     }
 })
 
@@ -132,6 +133,7 @@ lspconfig.tsserver.setup({})
 lspconfig.tailwindcss.setup({})
 lspconfig.eslint.setup({})
 lspconfig.ruby_ls.setup({})
+lspconfig.rubocop.setup({})
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
@@ -165,6 +167,7 @@ require('nvim-treesitter.configs').setup({
 require('nvim-tree').setup({
     view = {
         side = "right",
+        width = 50,
     },
 })
 
@@ -242,7 +245,6 @@ vim.opt.number = true
 vim.opt.mouse = ''
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.opt.smartindent = false
 vim.opt.hlsearch = false
 
 vim.opt.swapfile = false
@@ -274,8 +276,8 @@ vim.keymap.set({'n'}, '<leader>W', close_other_buffers, {})
 vim.keymap.set({'n'}, '<leader>q', '<cmd>q<cr>', {silent=true})
 
 local telescope_builtin = require('telescope.builtin')
-vim.keymap.set('n', 'ff', telescope_builtin.find_files, {})
-vim.keymap.set('n', 'fg', telescope_builtin.live_grep, {})
+vim.keymap.set('n', '<leader>t', telescope_builtin.find_files, {})
+vim.keymap.set('n', '<leader>F', telescope_builtin.live_grep, {})
 vim.keymap.set('n', 'fb', telescope_builtin.buffers, {})
 vim.keymap.set('n', 'fh', telescope_builtin.help_tags, {})
 
