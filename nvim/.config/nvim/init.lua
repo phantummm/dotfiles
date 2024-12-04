@@ -66,7 +66,7 @@ require('packer').startup(function(use)
     use 'nvim-lualine/lualine.nvim'
     use {
         'akinsho/bufferline.nvim',
-        tag = "v3.*",
+        tag = "*",
         requires = 'nvim-tree/nvim-web-devicons'
     }
 
@@ -98,7 +98,7 @@ require('mason-lspconfig').setup({
         "tsserver",
         "tailwindcss",
         "eslint",
-        "ruby_ls",
+        "ruby_lsp",
         "rubocop",
     }
 })
@@ -132,7 +132,7 @@ lspconfig.intelephense.setup({})
 lspconfig.tsserver.setup({})
 lspconfig.tailwindcss.setup({})
 lspconfig.eslint.setup({})
-lspconfig.ruby_ls.setup({})
+lspconfig.ruby_lsp.setup({})
 lspconfig.rubocop.setup({})
 
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -160,6 +160,7 @@ require('nvim-treesitter.configs').setup({
         'php',
         'javascript',
         'typescript',
+        'tsx',
         'ruby',
     },
 })
@@ -206,7 +207,7 @@ require('lualine').setup({
 
 require('copilot').setup({
     panel = { enabled = false },
-    suggestion = { enabled = false },
+    suggestion = { enabled = true },
 })
 require("copilot_cmp").setup({})
 
@@ -362,7 +363,7 @@ cmp.setup({
     formatting = {
         format = lspkind.cmp_format({
             -- mode = 'symbol',
-            maxwidth = 50,
+            maxwidth = 100,
             ellipsis_char = '...',
             show_labelDetails = true,
             before = function (_, vim_item)
