@@ -100,6 +100,7 @@ require('mason-lspconfig').setup({
         "eslint",
         "ruby_lsp",
         "rubocop",
+        "gopls",
     }
 })
 
@@ -122,10 +123,7 @@ lspconfig.lua_ls.setup({
         },
     },
 })
-lspconfig.pyright.setup({
-    -- Don't love this, but it sucks when broken, and can be activated in project
-    reportGeneralTypeIssues = false
-})
+lspconfig.pyright.setup({})
 lspconfig.rust_analyzer.setup({})
 lspconfig.bashls.setup({})
 lspconfig.intelephense.setup({})
@@ -134,6 +132,7 @@ lspconfig.tailwindcss.setup({})
 lspconfig.eslint.setup({})
 lspconfig.ruby_lsp.setup({})
 lspconfig.rubocop.setup({})
+lspconfig.gopls.setup({})
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
@@ -162,6 +161,7 @@ require('nvim-treesitter.configs').setup({
         'typescript',
         'tsx',
         'ruby',
+        'go',
     },
 })
 
@@ -354,8 +354,8 @@ cmp.setup({
         }),
     }),
     sources = cmp.config.sources({
-        { name = 'copilot', group_index = 1 },
-        { name = 'nvim_lsp', group_index = 2 },
+        { name = 'nvim_lsp', group_index = 1 },
+        { name = 'copilot', group_index = 2 },
         { name = 'path', group_index = 4 },
     }, {
             { name = 'buffer' },

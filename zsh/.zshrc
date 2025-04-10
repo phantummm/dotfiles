@@ -1,6 +1,5 @@
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-source /opt/homebrew/opt/asdf/libexec/asdf.sh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.shell-includes/prompt.zsh
 source ~/.shell-includes/aliases.zsh
@@ -13,4 +12,5 @@ else
   export EDITOR='vim'
 fi
 
-PATH="$PATH:$HOME/bin"
+export ASDF_DATA_DIR="/Users/alex/.asdf"
+export PATH="$ASDF_DATA_DIR/shims:$PATH:$HOME/bin:$HOME/.local/bin"
