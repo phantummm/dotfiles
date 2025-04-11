@@ -95,7 +95,7 @@ require('mason-lspconfig').setup({
         "pyright",
         "bashls",
         "intelephense",
-        "tsserver",
+        "ts_ls",
         "tailwindcss",
         "eslint",
         "ruby_lsp",
@@ -127,7 +127,7 @@ lspconfig.pyright.setup({})
 lspconfig.rust_analyzer.setup({})
 lspconfig.bashls.setup({})
 lspconfig.intelephense.setup({})
-lspconfig.tsserver.setup({})
+lspconfig.ts_ls.setup({})
 lspconfig.tailwindcss.setup({})
 lspconfig.eslint.setup({})
 lspconfig.ruby_lsp.setup({})
@@ -172,7 +172,7 @@ require('nvim-tree').setup({
     },
 })
 
-require('gitsigns').setup()
+require('gitsigns').setup({})
 
 require('gruvbox').setup({
     contrast = 'hard',
@@ -286,6 +286,7 @@ vim.keymap.set('n', '<leader>d', '<cmd>:NvimTreeToggle<cr>', {})
 vim.keymap.set('n', '<leader>D', '<cmd>:NvimTreeFindFile<cr>', {})
 
 vim.keymap.set('n', '<leader>B', '<cmd>Git blame<cr>', {silent=true})
+vim.keymap.set('n', '<leader>b', '<cmd>Gitsigns toggle_current_line_blame<cr>')
 
 local harpoon_mark = require('harpoon.mark')
 local harpoon_ui = require('harpoon.ui')
