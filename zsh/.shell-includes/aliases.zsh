@@ -1,3 +1,5 @@
+alias rdots="git -C ~/dot-files reset --hard HEAD"
+alias sdots="git -C ~/dotfiles add -A;git -C ~/dotfiles commit -m 'Saving dots.';git -C ~/dotfiles push origin master"
 alias zz='source ~/.zshrc'
 alias val='vi ~/.shell-includes/aliases.zsh'
 alias cda='cd ~/s/apps/apps/'
