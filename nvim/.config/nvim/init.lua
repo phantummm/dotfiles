@@ -59,7 +59,11 @@ require('packer').startup(function(use)
             'nvim-tree/nvim-web-devicons',
         },
     }
-    use 'ThePrimeagen/harpoon'
+    use {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        requires = { {"nvim-lua/plenary.nvim"} }
+    }
 
     -- themes/UI
     use 'ellisonleao/gruvbox.nvim'
@@ -127,7 +131,16 @@ lspconfig.pyright.setup({})
 lspconfig.rust_analyzer.setup({})
 lspconfig.bashls.setup({})
 lspconfig.intelephense.setup({})
-lspconfig.ts_ls.setup({})
+lspconfig.ts_ls.setup({
+    filetypes = {
+      'javascript',
+      'javascriptreact',
+      'javascript.jsx',
+      'typescript',
+      'typescriptreact',
+      'typescript.tsx',
+    },
+})
 lspconfig.tailwindcss.setup({})
 lspconfig.eslint.setup({})
 lspconfig.ruby_lsp.setup({})
@@ -241,6 +254,29 @@ local function close_other_buffers()
     vim.cmd('redrawtabline')
 end
 
+vim.api.nvim_create_user_command("CloseNonHarpoonBuffers", function()
+  local harpoon = require("harpoon")
+  local harpoon_list = harpoon:list():items()
+  local harpoon_paths = {}
+
+  -- Collect all file paths from the Harpoon list
+  for _, item in ipairs(harpoon_list) do
+    if item.value then
+      harpoon_paths[item.value] = true
+    end
+  end
+
+  -- Iterate through all listed buffers
+  for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_buf_get_option(bufnr, "buflisted") then
+      local path = vim.api.nvim_buf_get_name(bufnr)
+      if path ~= "" and not harpoon_paths[path] then
+        vim.api.nvim_buf_delete(bufnr, { force = true })
+      end
+    end
+  end
+end, { desc = "Close all non-Harpoon buffers" })
+
 -- vanilla settings
 vim.opt.number = true
 vim.opt.mouse = ''
@@ -281,6 +317,7 @@ vim.keymap.set('n', '<leader>t', telescope_builtin.find_files, {})
 vim.keymap.set('n', '<leader>F', telescope_builtin.live_grep, {})
 vim.keymap.set('n', 'fb', telescope_builtin.buffers, {})
 vim.keymap.set('n', 'fh', telescope_builtin.help_tags, {})
+vim.keymap.set('n', 'fo', telescope_builtin.oldfiles, {})
 
 vim.keymap.set('n', '<leader>d', '<cmd>:NvimTreeToggle<cr>', {})
 vim.keymap.set('n', '<leader>D', '<cmd>:NvimTreeFindFile<cr>', {})
@@ -288,13 +325,15 @@ vim.keymap.set('n', '<leader>D', '<cmd>:NvimTreeFindFile<cr>', {})
 vim.keymap.set('n', '<leader>B', '<cmd>Git blame<cr>', {silent=true})
 vim.keymap.set('n', '<leader>b', '<cmd>Gitsigns toggle_current_line_blame<cr>')
 
-local harpoon_mark = require('harpoon.mark')
-local harpoon_ui = require('harpoon.ui')
-vim.keymap.set('n', '<leader>M', harpoon_mark.add_file, {})
-vim.keymap.set('n', '<leader>N', harpoon_mark.rm_file, {})
-vim.keymap.set('n', '<leader>m', harpoon_ui.toggle_quick_menu, {})
-vim.keymap.set('n', '<M>]>', harpoon_ui.nav_next, {})
-vim.keymap.set('n', '<M>[>', harpoon_ui.nav_prev, {})
+local harpoon = require("harpoon")
+harpoon:setup()
+
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+vim.keymap.set("n", "<leader>A", function() harpoon:list():clear() end)
+vim.keymap.set("n", "<leader>S", "<cmd>CloseNonHarpoonBuffers<cr>")
+vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
 
 vim.api.nvim_create_autocmd('User', {
     pattern = 'LspAttached',
