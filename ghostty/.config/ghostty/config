@@ -1,0 +1,10 @@
+theme = dark:GruvboxDarkHard,light:GruvboxLightHard
+shell-integration-features = no-cursor
+macos-titlebar-style = transparent
+macos-icon = retro
+window-padding-x = 8
+cursor-style = block
+cursor-color = #d79921
+cursor-style-blink = true
+font-family = MesloLGSDZ Nerd Font Mono
+font-size = 16
