@@ -105,6 +105,7 @@ require('mason-lspconfig').setup({
         "ruby_lsp",
         "rubocop",
         "gopls",
+        "html",
     }
 })
 
@@ -146,6 +147,7 @@ lspconfig.eslint.setup({})
 lspconfig.ruby_lsp.setup({})
 lspconfig.rubocop.setup({})
 lspconfig.gopls.setup({})
+lspconfig.html.setup({})
 
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(args)
@@ -175,6 +177,7 @@ require('nvim-treesitter.configs').setup({
         'tsx',
         'ruby',
         'go',
+        'html',
     },
 })
 
