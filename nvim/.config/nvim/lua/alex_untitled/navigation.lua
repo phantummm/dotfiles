@@ -77,6 +77,7 @@ local function custom_sorter()
 		highlighter = sorters.ngram_highlighter,
 	})
 end
+
 require("telescope").setup({
 	defaults = {
 		file_ignore_patterns = {
