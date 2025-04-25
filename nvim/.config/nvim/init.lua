@@ -223,7 +223,12 @@ require("nvim-tree").setup({
 	},
 })
 
+vim.cmd("colorscheme gruvbox")
 require("gitsigns").setup({})
+
+vim.o.signcolumn = "yes"
+-- local normal_bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
+-- vim.api.nvim_set_hl(0, "SignColumn", { bg = normal_bg })
 
 require("gruvbox").setup({
 	contrast = "hard",
@@ -235,9 +240,6 @@ require("gruvbox").setup({
 })
 
 require("autoclose").setup({})
-
-vim.cmd("colorscheme gruvbox")
-
 require("bufferline").setup({})
 require("lualine").setup({
 	options = {
