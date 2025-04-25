@@ -48,42 +48,57 @@ require("lualine").setup({
 
 local sorters = require("telescope.sorters")
 local actions = require("telescope.actions")
-local fzy = require("telescope.algos.fzy")
+local finders = require("telescope.finders")
+local make_entry = require("telescope.make_entry")
+local pickers = require("telescope.pickers")
+local conf = require("telescope.config").values
+local fzy_score = require("telescope.algos.fzy").score
 
-local function custom_sorter()
-	return sorters.Sorter:new({
-		scoring_function = function(prompt, line)
-			local score = fzy.score(prompt, line)
-			if not score or score < 1 then
-				return -1
-			end
+local aboon_sorter = sorters.Sorter:new({
+	scoring_function = function(_, prompt, entry)
+		local line = entry
 
-			if line:match("/db/migrate/") then
-				score = score * 1.0
-			elseif line.match("app/avo/%.rb") then
-				score = score * 1.2
-			elseif line:match("schemas/%.yml$") then
-				score = score * 1.6
-			elseif line:match("%.rb$") then
-				score = score * 2
-			elseif line:match("%.ts$") then
-				score = score * 1.8
-			elseif line:match("%.tsx$") then
-				score = score * 1.9
-			end
+		local score = fzy_score(prompt, line)
 
-			return score
-		end,
-		highlighter = sorters.ngram_highlighter,
-	})
+		if score < 1 or not score then
+			return -1
+		end
+
+		if line:match("/db/migrate/") then
+			score = score + 1
+		elseif line:match("/app/avo/") then
+			score = score + 2
+		elseif line:match("/schemas/.*%.yml$") then
+			score = score + 3
+		elseif line:match("%.rb$") then
+			score = score + 6
+		elseif line:match("%.ts$") then
+			score = score + 4
+		elseif line:match("%.tsx$") then
+			score = score + 5
+		end
+
+		return -score
+	end,
+})
+
+local function aboon_picker()
+	pickers
+		.new({}, {
+			cwd = "/Users/alex/s/apps/",
+			prompt_title = "aboon files",
+			finder = finders.new_oneshot_job(
+				{ "rg", "--files", "--glob", "!**/api/gen/**" },
+				{ entry_maker = make_entry.gen_from_file() }
+			),
+			sorter = aboon_sorter,
+			previewer = conf.grep_previewer({}),
+		})
+		:find()
 end
 
 require("telescope").setup({
 	defaults = {
-		file_ignore_patterns = {
-			"/api/gen/",
-		},
-		sorter = custom_sorter(),
 		mappings = {
 			i = {
 				["<C-v>"] = function(prompt_bufnr)
@@ -96,6 +111,8 @@ require("telescope").setup({
 		},
 	},
 })
+
+vim.api.nvim_create_user_command("AboonFinder", aboon_picker, {})
 
 vim.api.nvim_create_user_command("CloseBufferSmartly", function()
 	vim.cmd("bdelete")
