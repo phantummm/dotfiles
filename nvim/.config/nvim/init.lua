@@ -94,7 +94,7 @@ local lsp_defaults = {
 		debounce_text_changes = 150,
 	},
 	capabilities = vim.lsp.protocol.make_client_capabilities(),
-	on_attach = function(client, bufnr)
+	on_attach = function(_, _)
 		vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
 	end,
 }
@@ -138,7 +138,7 @@ require("conform").setup({
 			},
 			stdin = false,
 			timeout_ms = 10000,
-			condition = function(ctx)
+			condition = function(_)
 				local cwd = vim.fn.getcwd()
 				return cwd:match("^/Users/alex/s/apps")
 			end,
