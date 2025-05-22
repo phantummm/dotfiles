@@ -19,6 +19,8 @@ vim.opt.mouse = ""
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.hlsearch = false
+vim.opt.cursorline = true
+-- vim.opt.relativenumber = true
 
 vim.opt.swapfile = false
 
