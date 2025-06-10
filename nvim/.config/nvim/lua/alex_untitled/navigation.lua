@@ -17,13 +17,38 @@ require("nvim-tree").setup({
 })
 
 require("bufferline").setup({
+	highlights = {
+		buffer_selected = {
+			fg = { attribute = "fg", highlight = "Normal" },
+			bg = { attribute = "fg", highlight = "Pmenu" },
+			bold = true,
+		},
+		indicator_selected = {
+			fg = { attribute = "fg", highlight = "Normal" },
+			bg = { attribute = "fg", highlight = "Pmenu" },
+			bold = true,
+		},
+		modified_selected = {
+			bg = { attribute = "fg", highlight = "Pmenu" },
+			bold = true,
+		},
+	},
 	options = {
+		mode = "buffers",
+		show_buffer_icons = false,
+		color_icons = false,
 		offsets = {
 			{
 				filetype = "NvimTree",
-				highlight = "Directory",
-				text = "🔎🗂️",
-				text_align = "center",
+			},
+		},
+		separator_style = "thick",
+		show_buffer_close_icons = false,
+		groups = {
+			items = {
+				require("bufferline.groups").builtin.pinned:with({
+					icon = "📍",
+				}),
 			},
 		},
 	},
