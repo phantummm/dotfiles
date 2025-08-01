@@ -32,6 +32,10 @@ require("bufferline").setup({
 			bg = { attribute = "fg", highlight = "Pmenu" },
 			bold = true,
 		},
+		duplicate_selected = {
+			fg = { attribute = "fg", highlight = "Normal" },
+			bg = { attribute = "fg", highlight = "Pmenu" },
+		},
 	},
 	options = {
 		mode = "buffers",
