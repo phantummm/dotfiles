@@ -1,10 +1,13 @@
 local config_path = vim.fn.stdpath("config") .. "/init.lua"
 
 vim.g.mapleader = ","
-vim.keymap.set({ "n", "x" }, "cp", '"+y')
-vim.keymap.set({ "n", "x" }, "cv", '"+p')
+vim.keymap.set({ "n", "x" }, "cy", '"+y')
+vim.keymap.set({ "n", "x" }, "cp", '"+p')
 vim.keymap.set({ "n" }, "cl", "<cmd>CopyFilePathWithLine<cr>")
 vim.keymap.set({ "n" }, "DD", "<cmd>DuplicateFile<cr>")
+vim.keymap.set({ "n" }, "<leader>L", function()
+	vim.opt.relativenumber = not vim.opt.relativenumber:get()
+end, { desc = "Toggle relative numbers" })
 
 vim.keymap.set({ "n" }, "<leader>r", "<cmd>e " .. config_path .. "<cr>")
 vim.keymap.set({ "n" }, "<leader>R", "<cmd>source " .. config_path .. "<cr>")

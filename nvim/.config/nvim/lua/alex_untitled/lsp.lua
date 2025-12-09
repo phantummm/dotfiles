@@ -56,7 +56,15 @@ lspconfig.ts_ls.setup({
 })
 lspconfig.tailwindcss.setup({})
 lspconfig.eslint.setup({})
-lspconfig.ruby_lsp.setup({})
+lspconfig.ruby_lsp.setup({
+	init_options = {
+		addonSettings = {
+			["Ruby LSP Rails"] = {
+				enablePendingMigrationsPrompt = false,
+			},
+		},
+	},
+})
 lspconfig.rubocop.setup({})
 lspconfig.gopls.setup({})
 lspconfig.html.setup({})

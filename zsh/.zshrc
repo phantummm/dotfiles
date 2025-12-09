@@ -14,6 +14,7 @@ fi
 
 export ASDF_DATA_DIR="/Users/alex/.asdf"
 export PATH="$ASDF_DATA_DIR/shims:$PATH:$HOME/bin:$HOME/.local/bin"
+export TMPDIR=/tmp
 
 # pnpm
 export PNPM_HOME="/Users/alex/Library/pnpm"
