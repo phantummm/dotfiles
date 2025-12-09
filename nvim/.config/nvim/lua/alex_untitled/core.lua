@@ -35,3 +35,9 @@ vim.opt.background = "dark"
 
 -- Because ftplugins overwrite formatoptions :(
 vim.cmd([[autocmd BufEnter * set formatoptions-=cro]])
+
+vim.filetype.add({
+	extension = {
+		tcss = "css",
+	},
+})

@@ -13,6 +13,7 @@ require("mason-lspconfig").setup({
 		"rubocop",
 		"gopls",
 		"html",
+		"clangd",
 	},
 })
 
@@ -40,6 +41,7 @@ lspconfig.lua_ls.setup({
 		},
 	},
 })
+lspconfig.clangd.setup({})
 lspconfig.pyright.setup({})
 lspconfig.rust_analyzer.setup({})
 lspconfig.bashls.setup({})

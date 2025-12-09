@@ -20,6 +20,7 @@ require("nvim-treesitter.configs").setup({
 		"ruby",
 		"go",
 		"html",
+		"css",
 	},
 })
 
@@ -30,24 +31,18 @@ require("conform").setup({
 		javascriptreact = { "prettierd" },
 		typescript = { "prettierd" },
 		typescriptreact = { "prettierd" },
-		ruby = { "rubocop_fix" },
+		ruby = { "rubocop" },
+		eruby = { "rustywind" },
 	},
 	format_on_save = {
 		timeout_ms = 500,
 		lsp_format = "fallback",
 	},
 	formatters = {
-		rubocop_fix = {
-			command = "~/bin/rubocop_format.sh",
-			args = {
-				"$FILENAME",
-			},
-			stdin = false,
-			timeout_ms = 10000,
-			condition = function(_)
-				local cwd = vim.fn.getcwd()
-				return cwd:match("^/Users/alex/s/apps")
-			end,
+		rustywind = {
+			command = "rustywind",
+			args = { "--stdin" },
+			stdin = true,
 		},
 	},
 })
