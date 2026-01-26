@@ -1,66 +1,6 @@
-require("nvim-tree").setup({
-	hijack_directories = {
-		auto_open = false,
-	},
-	renderer = {
-		highlight_opened_files = "all",
-	},
-	actions = {
-		change_dir = {
-			restrict_above_cwd = true,
-		},
-	},
-	view = {
-		side = "right",
-		width = 50,
-	},
-})
-
-require("bufferline").setup({
-	highlights = {
-		buffer_selected = {
-			fg = { attribute = "fg", highlight = "Normal" },
-			bg = { attribute = "fg", highlight = "Pmenu" },
-			bold = true,
-		},
-		indicator_selected = {
-			fg = { attribute = "fg", highlight = "Normal" },
-			bg = { attribute = "fg", highlight = "Pmenu" },
-			bold = true,
-		},
-		modified_selected = {
-			bg = { attribute = "fg", highlight = "Pmenu" },
-			bold = true,
-		},
-		duplicate_selected = {
-			fg = { attribute = "fg", highlight = "Normal" },
-			bg = { attribute = "fg", highlight = "Pmenu" },
-		},
-	},
-	options = {
-		mode = "buffers",
-		show_buffer_icons = false,
-		color_icons = false,
-		offsets = {
-			{
-				filetype = "NvimTree",
-			},
-		},
-		separator_style = "thick",
-		show_buffer_close_icons = false,
-		groups = {
-			items = {
-				require("bufferline.groups").builtin.pinned:with({
-					icon = "📍",
-				}),
-			},
-		},
-	},
-})
-
 require("lualine").setup({
 	options = {
-		theme = "gruvbox-material",
+		theme = "gruvbox",
 		icons_enabled = false,
 		section_separators = "",
 		component_separators = "",
@@ -81,6 +21,7 @@ local finders = require("telescope.finders")
 local make_entry = require("telescope.make_entry")
 local pickers = require("telescope.pickers")
 local conf = require("telescope.config").values
+local themes = require("telescope.themes")
 local fzy_score = require("telescope.algos.fzy").score
 
 local aboon_sorter = sorters.Sorter:new({
@@ -113,21 +54,27 @@ local aboon_sorter = sorters.Sorter:new({
 
 local function aboon_picker()
 	pickers
-		.new({}, {
-			cwd = "/Users/alex/s/apps/",
-			prompt_title = "aboon files",
-			finder = finders.new_oneshot_job(
-				{ "rg", "--files", "--glob", "!**/api/gen/**" },
-				{ entry_maker = make_entry.gen_from_file() }
-			),
-			sorter = aboon_sorter,
-			previewer = conf.grep_previewer({}),
-		})
+		.new(
+			themes.get_ivy({
+				previewer = false,
+			}),
+			{
+				cwd = "/Users/alex/s/apps/",
+				prompt_title = "aboon files",
+				finder = finders.new_oneshot_job(
+					{ "rg", "--files", "--glob", "!**/api/gen/**" },
+					{ entry_maker = make_entry.gen_from_file() }
+				),
+				sorter = aboon_sorter,
+				previewer = conf.grep_previewer({}),
+			}
+		)
 		:find()
 end
 
 require("telescope").setup({
-	defaults = {
+	defaults = themes.get_ivy({
+		previewer = false,
 		mappings = {
 			i = {
 				["<C-v>"] = function(prompt_bufnr)
@@ -138,8 +85,23 @@ require("telescope").setup({
 				["<C-v>"] = actions.select_vertical,
 			},
 		},
+	}),
+	extensions = {
+		file_browser = {
+			theme = "ivy",
+			hijack_netrw = true,
+			mappings = {
+				["i"] = {
+					-- your custom insert mode mappings
+				},
+				["n"] = {
+					-- your custom normal mode mappings
+				},
+			},
+		},
 	},
 })
+require("telescope").load_extension("file_browser")
 
 vim.api.nvim_create_user_command("AboonFinder", aboon_picker, {})
 

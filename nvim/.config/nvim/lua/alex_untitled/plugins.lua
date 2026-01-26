@@ -60,10 +60,8 @@ require("packer").startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 	use({
-		"nvim-tree/nvim-tree.lua",
-		requires = {
-			"nvim-tree/nvim-web-devicons",
-		},
+		"nvim-telescope/telescope-file-browser.nvim",
+		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 	})
 	use({
 		"ThePrimeagen/harpoon",
@@ -74,11 +72,11 @@ require("packer").startup(function(use)
 	-- themes/UI
 	use("ellisonleao/gruvbox.nvim")
 	use("nvim-lualine/lualine.nvim")
-	use({
-		"akinsho/bufferline.nvim",
-		tag = "*",
-		requires = "nvim-tree/nvim-web-devicons",
-	})
+	-- use({
+	-- 	"akinsho/bufferline.nvim",
+	-- 	tag = "*",
+	-- 	requires = "nvim-tree/nvim-web-devicons",
+	-- })
 
 	if install_plugins then
 		print("Syncing packer...")

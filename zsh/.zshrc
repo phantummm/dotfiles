@@ -28,3 +28,6 @@ if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
     export TERM=xterm-256color
 fi
 
+
+# Amp CLI
+export PATH="/Users/alex/.amp/bin:$PATH"
