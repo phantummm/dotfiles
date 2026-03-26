@@ -1,4 +1,4 @@
-theme = dark:GruvboxDarkHard,light:GruvboxLightHard
+theme = Gruvbox Dark
 shell-integration-features = no-cursor
 macos-titlebar-style = transparent
 macos-icon = retro
