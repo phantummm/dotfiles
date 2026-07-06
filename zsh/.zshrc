@@ -3,6 +3,9 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.shell-includes/prompt.zsh
+source ~/.shell-includes/aliases.zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -109,3 +112,5 @@ export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
 # History settings live in the dotfiles repo (must load after oh-my-zsh,
 # which sets its own smaller HISTSIZE/SAVEHIST).
 source ~/dotfiles/zsh/.shell-includes/history.zsh
+eval "$(/opt/homebrew/bin/brew shellenv)"
+

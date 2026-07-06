@@ -11,3 +11,4 @@ font-family = MesloLGSDZ Nerd Font Mono
 font-size = 16
 clipboard-read = allow
 clipboard-write = allow
+keybind = shift+enter=text:\x1b[13;2u

@@ -16,14 +16,38 @@ vim.keymap.set({ "n" }, "<C-c>", "<cmd>cnext<CR>")
 vim.keymap.set({ "n" }, "<C-d>", "<cmd>cprev<CR>")
 vim.keymap.set({ "n" }, "<C-x>", "<cmd>cclose<cr>")
 vim.keymap.set({ "n" }, "<leader>v", "<cmd>vsplit<cr>")
--- vim.keymap.set({ "n" }, "<Tab>", "<cmd>BufferLineCycleNext<cr>")
--- vim.keymap.set({ "n" }, "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>")
--- vim.keymap.set({ "n" }, "<leader>a", "<cmd>BufferLineTogglePin<cr>")
--- vim.keymap.set({ "n" }, "<leader>z", "<cmd>BufferLineGroupToggle ungrouped<cr>")
--- vim.keymap.set({ "n" }, "<leader>Z", "<cmd>BufferLineGroupClose ungrouped<cr>")
--- vim.keymap.set({ "n" }, "<leader>1", "<cmd>BufferLinePick<cr>")
--- vim.keymap.set({ "n" }, "<leader>w", "<cmd>CloseBufferSmartly<cr>")
--- vim.keymap.set({ "n" }, "<leader>W", "<cmd>BufferLineCloseOthers<cr>")
+-- Buffer cycling
+vim.keymap.set("n", "<Tab>", "<cmd>bnext<cr>")
+vim.keymap.set("n", "<S-Tab>", "<cmd>bprev<cr>")
+
+-- Harpoon
+local harpoon = require("harpoon")
+harpoon:setup()
+
+vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Harpoon add" })
+vim.keymap.set("n", "<leader>h", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Harpoon menu" })
+vim.keymap.set("n", "<leader>1", function() harpoon:list():select(1) end, { desc = "Harpoon 1" })
+vim.keymap.set("n", "<leader>2", function() harpoon:list():select(2) end, { desc = "Harpoon 2" })
+vim.keymap.set("n", "<leader>3", function() harpoon:list():select(3) end, { desc = "Harpoon 3" })
+vim.keymap.set("n", "<leader>4", function() harpoon:list():select(4) end, { desc = "Harpoon 4" })
+
+-- Close all buffers except harpooned ones
+vim.keymap.set("n", "<leader>Z", function()
+	local harpooned = {}
+	local list = harpoon:list()
+	for i = 1, list:length() do
+		local item = list:get(i)
+		if item then
+			harpooned[vim.fn.fnamemodify(item.value, ":p")] = true
+		end
+	end
+
+	for _, buf in ipairs(vim.fn.getbufinfo({ buflisted = 1 })) do
+		if not harpooned[buf.name] then
+			vim.api.nvim_buf_delete(buf.bufnr, { force = false })
+		end
+	end
+end, { desc = "Close non-harpooned buffers" })
 vim.keymap.set({ "n" }, "<leader>q", "<cmd>q<cr>", { silent = true })
 vim.keymap.set({ "n" }, "<leader>f", "<cmd>lua vim.lsp.buf.format()<cr>", { silent = true })
 
@@ -33,13 +57,15 @@ vim.keymap.set("n", "<leader>b", "<cmd>Gitsigns toggle_current_line_blame<cr>")
 local telescope_builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>t", "<cmd>AboonFinder<cr>", {})
 vim.keymap.set("n", "<leader>d", function()
-	require("telescope").extensions.file_browser.file_browser()
+	require("telescope").extensions.file_browser.file_browser({ respect_gitignore = false })
 end)
 vim.keymap.set("n", "<leader>D", function()
-	require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", select_buffer = true })
+	require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", select_buffer = true, respect_gitignore = false })
 end)
 -- vim.keymap.set("n", "<leader>D", file_browser.file_browser, { path = "%:p:h", select_buffer = true })
-vim.keymap.set("n", "<leader>T", telescope_builtin.find_files, {})
+vim.keymap.set("n", "<leader>T", function()
+	telescope_builtin.find_files({ no_ignore = true })
+end, {})
 vim.keymap.set("n", "<leader>F", telescope_builtin.live_grep, {})
 vim.keymap.set("n", "fb", telescope_builtin.buffers, {})
 vim.keymap.set("n", "fh", telescope_builtin.help_tags, {})
