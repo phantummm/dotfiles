@@ -21,6 +21,7 @@ require("nvim-treesitter.config").setup({
 		"go",
 		"html",
 		"css",
+		"swift",
 	},
 })
 
@@ -33,6 +34,7 @@ require("conform").setup({
 		typescriptreact = { "prettierd" },
 		ruby = { "rubocop" },
 		eruby = { "rustywind" },
+		swift = { "swift_format" },
 	},
 	format_on_save = {
 		timeout_ms = 500,

@@ -9,3 +9,5 @@ cursor-color = #d79921
 cursor-style-blink = true
 font-family = MesloLGSDZ Nerd Font Mono
 font-size = 16
+clipboard-read = allow
+clipboard-write = allow

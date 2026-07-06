@@ -70,6 +70,10 @@ lspconfig.ruby_lsp.setup({
 lspconfig.rubocop.setup({})
 lspconfig.gopls.setup({})
 lspconfig.html.setup({})
+lspconfig.sourcekit.setup({
+	filetypes = { "swift", "objective-c", "objective-cpp" },
+	cmd = { "xcrun", "sourcekit-lsp" },
+})
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)

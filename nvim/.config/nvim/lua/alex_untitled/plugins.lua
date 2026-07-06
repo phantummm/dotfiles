@@ -69,6 +69,17 @@ require("packer").startup(function(use)
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
 
+	-- swift/xcode
+	use("MunifTanjim/nui.nvim")
+	use({
+		"wojciech-kulik/xcodebuild.nvim",
+		requires = {
+			"nvim-telescope/telescope.nvim",
+			"MunifTanjim/nui.nvim",
+			"nvim-lua/plenary.nvim",
+		},
+	})
+
 	-- themes/UI
 	use("ellisonleao/gruvbox.nvim")
 	use("nvim-lualine/lualine.nvim")
