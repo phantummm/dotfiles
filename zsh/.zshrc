@@ -3,6 +3,9 @@
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.shell-includes/prompt.zsh
+source ~/.shell-includes/aliases.zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -102,10 +105,20 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source $(brew --prefix asdf)/libexec/asdf.sh
+# Homebrew must be on PATH before anything below shells out to brew or
+# brew-installed tools (asdf, mise).
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# asdf <0.16 ships a shell script; 0.16+ is a binary that only needs shims on PATH
+if [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]; then
+  source "$(brew --prefix asdf)/libexec/asdf.sh"
+else
+  export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
+fi
 eval "$(mise activate zsh)"
 export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
 
 # History settings live in the dotfiles repo (must load after oh-my-zsh,
 # which sets its own smaller HISTSIZE/SAVEHIST).
 source ~/dotfiles/zsh/.shell-includes/history.zsh
+
