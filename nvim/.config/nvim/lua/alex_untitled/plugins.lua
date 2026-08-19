@@ -64,6 +64,12 @@ require("packer").startup(function(use)
 		requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" },
 	})
 	use({
+		"nvim-tree/nvim-tree.lua",
+		requires = {
+			"nvim-tree/nvim-web-devicons",
+		},
+	})
+	use({
 		"ThePrimeagen/harpoon",
 		branch = "harpoon2",
 		requires = { { "nvim-lua/plenary.nvim" } },

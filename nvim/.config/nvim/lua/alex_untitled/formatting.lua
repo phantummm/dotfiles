@@ -1,4 +1,8 @@
-require("nvim-treesitter.config").setup({
+-- swift's parser must be generated locally, and this nvim-treesitter branch is
+-- archived and still passes --no-bindings, which newer tree-sitter CLIs reject
+require("nvim-treesitter.install").ts_generate_args = { "generate", "--abi", vim.treesitter.language_version }
+
+require("nvim-treesitter.configs").setup({
 	indent = {
 		enable = true,
 	},

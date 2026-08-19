@@ -1,3 +1,27 @@
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
+require("nvim-tree").setup({
+	hijack_directories = {
+		auto_open = false,
+	},
+	renderer = {
+		highlight_opened_files = "all",
+	},
+	actions = {
+		change_dir = {
+			restrict_above_cwd = true,
+		},
+	},
+	update_focused_file = {
+		enable = true,
+	},
+	view = {
+		side = "right",
+		width = 36,
+	},
+})
+
 require("lualine").setup({
 	options = {
 		theme = "gruvbox",
