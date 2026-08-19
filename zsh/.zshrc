@@ -115,7 +115,10 @@ if [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ]; then
 else
   export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
 fi
-eval "$(mise activate zsh)"
+# mise is only installed on some machines; skip activation where it isn't.
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
 export PATH="$HOME/.local/bin:$HOME/.bun/bin:$PATH"
 
 # History settings live in the dotfiles repo (must load after oh-my-zsh,

@@ -54,6 +54,9 @@ vim.keymap.set({ "n" }, "<leader>f", "<cmd>lua vim.lsp.buf.format()<cr>", { sile
 vim.keymap.set("n", "<leader>B", "<cmd>Git blame<cr>", { silent = true })
 vim.keymap.set("n", "<leader>b", "<cmd>Gitsigns toggle_current_line_blame<cr>")
 
+vim.keymap.set("n", "<leader>e", "<cmd>NvimTreeToggle<cr>", { desc = "Toggle file tree" })
+vim.keymap.set("n", "<leader>E", "<cmd>NvimTreeFindFile<cr>", { desc = "Reveal current file in tree" })
+
 local telescope_builtin = require("telescope.builtin")
 vim.keymap.set("n", "<leader>t", "<cmd>AboonFinder<cr>", {})
 vim.keymap.set("n", "<leader>d", function()

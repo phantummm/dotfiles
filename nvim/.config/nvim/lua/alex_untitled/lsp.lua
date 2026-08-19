@@ -15,24 +15,21 @@ require("mason-lspconfig").setup({
 		"html",
 		"clangd",
 	},
+	-- mason-lspconfig calls vim.lsp.enable() for everything above once installed
 })
 
-local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
-local lspconfig = require("lspconfig")
-local lsp_defaults = {
+-- shared defaults for every server, merged under any per-server vim.lsp.config() below
+vim.lsp.config("*", {
 	flags = {
 		debounce_text_changes = 150,
 	},
-	capabilities = vim.lsp.protocol.make_client_capabilities(),
+	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 	on_attach = function(_, _)
 		vim.api.nvim_exec_autocmds("User", { pattern = "LspAttached" })
 	end,
-}
+})
 
-lspconfig.util.default_config =
-	vim.tbl_deep_extend("force", lspconfig.util.default_config, lsp_defaults, { capabilities = cmp_capabilities })
-
-lspconfig.lua_ls.setup({
+vim.lsp.config("lua_ls", {
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -41,12 +38,8 @@ lspconfig.lua_ls.setup({
 		},
 	},
 })
-lspconfig.clangd.setup({})
-lspconfig.pyright.setup({})
-lspconfig.rust_analyzer.setup({})
-lspconfig.bashls.setup({})
-lspconfig.intelephense.setup({})
-lspconfig.ts_ls.setup({
+
+vim.lsp.config("ts_ls", {
 	filetypes = {
 		"javascript",
 		"javascriptreact",
@@ -56,9 +49,8 @@ lspconfig.ts_ls.setup({
 		"typescript.tsx",
 	},
 })
-lspconfig.tailwindcss.setup({})
-lspconfig.eslint.setup({})
-lspconfig.ruby_lsp.setup({
+
+vim.lsp.config("ruby_lsp", {
 	init_options = {
 		addonSettings = {
 			["Ruby LSP Rails"] = {
@@ -67,13 +59,13 @@ lspconfig.ruby_lsp.setup({
 		},
 	},
 })
-lspconfig.rubocop.setup({})
-lspconfig.gopls.setup({})
-lspconfig.html.setup({})
-lspconfig.sourcekit.setup({
+
+-- not mason-managed (ships with Xcode), so it needs an explicit enable
+vim.lsp.config("sourcekit", {
 	filetypes = { "swift", "objective-c", "objective-cpp" },
 	cmd = { "xcrun", "sourcekit-lsp" },
 })
+vim.lsp.enable("sourcekit")
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
